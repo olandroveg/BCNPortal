@@ -22,10 +22,12 @@ namespace BCNPortal.Data
             }
         }
         public virtual DbSet<BcnUserAccount> BcnUserAccount { get; set; }
+        public virtual DbSet<Token> Token { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new BcnUserAccountConfiguration());
+            builder.ApplyConfiguration(new TokenConfiguration());
         }
         public DatabaseFacade GetDatabase()
         {
