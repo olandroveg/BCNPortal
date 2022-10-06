@@ -1,28 +1,31 @@
 {
   "format": 1,
   "restore": {
-    "/Users/subzero/Projects/BCNPortal/BCNPortal/BCNPortal.csproj": {}
+    "C:\\Users\\1094545\\source\\repos\\olandroveg\\BCNPortal\\BCNPortal\\BCNPortal.csproj": {}
   },
   "projects": {
-    "/Users/subzero/Projects/BCNPortal/BCNPortal/BCNPortal.csproj": {
+    "C:\\Users\\1094545\\source\\repos\\olandroveg\\BCNPortal\\BCNPortal\\BCNPortal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/subzero/Projects/BCNPortal/BCNPortal/BCNPortal.csproj",
+        "projectUniqueName": "C:\\Users\\1094545\\source\\repos\\olandroveg\\BCNPortal\\BCNPortal\\BCNPortal.csproj",
         "projectName": "BCNPortal",
-        "projectPath": "/Users/subzero/Projects/BCNPortal/BCNPortal/BCNPortal.csproj",
-        "packagesPath": "/Users/subzero/.nuget/packages/",
-        "outputPath": "/Users/subzero/Projects/BCNPortal/BCNPortal/obj/",
+        "projectPath": "C:\\Users\\1094545\\source\\repos\\olandroveg\\BCNPortal\\BCNPortal\\BCNPortal.csproj",
+        "packagesPath": "C:\\Users\\1094545\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\1094545\\source\\repos\\olandroveg\\BCNPortal\\BCNPortal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "/Users/subzero/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\1094545\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,7 +79,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -88,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
