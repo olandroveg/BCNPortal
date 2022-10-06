@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BCNPortal.Services.ApiRequest
 {
-    public class ApiRequest : IApiRequest
+    public class ApiRequestService : IApiRequestService
     {
         private string _aafAddress;
         private string _tokenApi;
-        public ApiRequest()
+        public ApiRequestService()
         {
             _aafAddress = StaticConfigurationManager.AppSetting["ApiAddress:AAF_Address"];
             _tokenApi = StaticConfigurationManager.AppSetting["ApiAddress:AAF_getToken"];

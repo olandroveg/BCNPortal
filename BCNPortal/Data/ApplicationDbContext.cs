@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using BCNPortal.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -20,10 +21,11 @@ namespace BCNPortal.Data
                 throw;
             }
         }
+        public virtual DbSet<BcnUserAccount> BcnUserAccount { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
+            builder.ApplyConfiguration(new BcnUserAccountConfiguration());
         }
         public DatabaseFacade GetDatabase()
         {

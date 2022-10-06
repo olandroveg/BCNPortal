@@ -6,7 +6,7 @@ namespace BCNPortal.Utility
     {
         public static void UseInjection(this IServiceCollection services)
         {
-            services.AddTransient<IApiRequest, ApiRequest>();
+            services.AddTransient<IApiRequestService, ApiRequestService>();
         }
     }
 }
