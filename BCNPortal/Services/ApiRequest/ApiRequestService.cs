@@ -19,7 +19,7 @@ namespace BCNPortal.Services.ApiRequest
             var tokenApi = new TokenApi();
             try
             {
-                var dataObj = new TokenApi.TokenBody(username, password);
+                var dataObj = new TokenRqst(username, password);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(dataObj), Encoding.UTF8, "application/json");
