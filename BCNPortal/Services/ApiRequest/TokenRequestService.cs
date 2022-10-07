@@ -1,20 +1,24 @@
 ﻿using BCNPortal.Models;
+using BCNPortal.Services.Token;
 using BCNPortal.Utility;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace BCNPortal.Services.ApiRequest
 {
-    public class ApiRequestService : IApiRequestService
+    public class TokenRequestService : ITokenRequestService
     {
         private string _aafAddress;
         private string _tokenApi;
-        public ApiRequestService()
+        private readonly ITokenEntityService _tokenEntityService;
+        
+        public TokenRequestService(ITokenEntityService tokenEntityService)
         {
             _aafAddress = StaticConfigurationManager.AppSetting["ApiAddress:AAF_Address"];
             _tokenApi = StaticConfigurationManager.AppSetting["ApiAddress:AAF_getToken"];
+            _tokenEntityService = tokenEntityService;
         }
-        public async Task <TokenApi> RequestToken(string username, string password)
+        private async Task <TokenApi> RequestToken(string username, string password)
         {
             var tokenApi = new TokenApi();
             try
@@ -31,7 +35,13 @@ namespace BCNPortal.Services.ApiRequest
                             tokenApi = JsonConvert.DeserializeObject<TokenApi>(apiResponse);
                             if (tokenApi.status == "Success")
                             {
-                                
+                                var token = new BCNPortal.Models.Token
+                                {
+                                    Id = Guid.Empty,
+                                    Value = tokenApi.token,
+                                    DateTime = DateTime.Now
+                                };
+                                await _tokenEntityService.AddOrUpdate(token);
                                 return tokenApi;
                             }
 
@@ -47,6 +57,20 @@ namespace BCNPortal.Services.ApiRequest
                 tokenApi.status = "exception";
                 return tokenApi;
             }
+        }
+        public async Task<string> ManageToken(string username, string password)
+        {
+            string token = string.Empty;
+            if (_tokenEntityService.TokenAvailability())
+                token = _tokenEntityService.GetToken();
+            else
+            {
+                var tokenApi = await RequestToken(username, password);
+                if (tokenApi.status == "Success")
+                    token = tokenApi.token;
+            }
+            return token;
+             
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
+using BCNPortal.Services.Token;
 
 namespace BCNPortal.Utility
 {
@@ -7,8 +8,10 @@ namespace BCNPortal.Utility
     {
         public static void UseInjection(this IServiceCollection services)
         {
-            services.AddTransient<IApiRequestService, ApiRequestService>();
+            services.AddTransient<ITokenRequestService, TokenRequestService>();
+            services.AddTransient<ITokenEntityService, TokenEntityService>();
             services.AddTransient<IBcnUserService, BcnUserService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
     }
 }
