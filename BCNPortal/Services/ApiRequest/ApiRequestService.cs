@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BCNPortal.Services.ApiRequest
 {
-    public class ApiRequest : IApiRequest
+    public class ApiRequestService : IApiRequestService
     {
         private string _aafAddress;
         private string _tokenApi;
-        public ApiRequest()
+        public ApiRequestService()
         {
             _aafAddress = StaticConfigurationManager.AppSetting["ApiAddress:AAF_Address"];
             _tokenApi = StaticConfigurationManager.AppSetting["ApiAddress:AAF_getToken"];
@@ -19,7 +19,7 @@ namespace BCNPortal.Services.ApiRequest
             var tokenApi = new TokenApi();
             try
             {
-                var dataObj = new TokenApi.TokenBody(username, password);
+                var dataObj = new TokenRqst(username, password);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(dataObj), Encoding.UTF8, "application/json");

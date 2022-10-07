@@ -2,7 +2,7 @@
 
 namespace BCNPortal.Services.ApiRequest
 {
-    public interface IApiRequest
+    public interface IApiRequestService
     {
         public Task<TokenApi> RequestToken(string username, string password);
     }

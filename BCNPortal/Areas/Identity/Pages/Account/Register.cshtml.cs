@@ -19,6 +19,9 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 
+using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.BcnUser;
+
 namespace BCNPortal.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
@@ -29,12 +32,14 @@ namespace BCNPortal.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IBcnUserService _bcnUserService;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
+            IBcnUserService bcnUserService,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -43,6 +48,7 @@ namespace BCNPortal.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
+            _bcnUserService = bcnUserService;
         }
 
         /// <summary>
@@ -97,6 +103,11 @@ namespace BCNPortal.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Required]
+            public string BCNuser { get; set; }
+            public IEnumerable<BCNuserViewModel> BCNuserViewModel { get; set; }
+            public IEnumerable<Guid> BCNusers { get; set; }
         }
 
 
@@ -133,6 +144,22 @@ namespace BCNPortal.Areas.Identity.Pages.Account
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
+                    Guid bcNodeUserServId;
+                    if (Input.BCNuser == "Administrator")
+                         bcNodeUserServId = await _bcnUserService.AddOrUpdate(new Models.BcnUserAccount
+                        {
+                            PortalUserId = Guid.Parse(userId),
+                            BcnUsername = "admin@gmail.com",
+                            BcnPassword = "Oasis123*"
+                        });
+                    else if (Input.BCNuser == "bcNode")
+                        bcNodeUserServId = await _bcnUserService.AddOrUpdate(new Models.BcnUserAccount
+                        {
+                            PortalUserId = Guid.Parse(userId),
+                            BcnUsername = "bcNode@gmail.com",
+                            BcnPassword = "bcNode123*"
+                        });
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -176,5 +203,16 @@ namespace BCNPortal.Areas.Identity.Pages.Account
             }
             return (IUserEmailStore<IdentityUser>)_userStore;
         }
+    }
+    public class BCNuserViewModel
+    {
+        public Guid Id { get; set; }
+        [Required(ErrorMessageResourceName = "NameRequired")]
+        public string Name { get; set; }
+
+        //public StoreRole ToRol(bool edit = false)
+        //{
+        //    return new StoreRole { Id = edit ? Id.ToString() : null, Name = Name };
+        //}
     }
 }

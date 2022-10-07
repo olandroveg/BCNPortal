@@ -17,6 +17,26 @@
                 <label asp-for="Input.Email"></label>
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
+
+             @{ var bcnUserList = new List<string>(new string[]
+                             {
+                        "Administrator",
+                        "bcNode"
+             }); }
+
+            <div class="form-group">
+
+                <label class="text-left">
+                    Usuario del BCN
+                </label>
+                <select asp-for="Input.BCNuser" style="width: 100%;"
+                        asp-items="@(new SelectList(bcnUserList))" class="multi"
+                        required="required" data-val="true"
+                        data-val-required="escoja un usuario del BCN"></select>
+
+            </div>
+
+
             <div class="form-floating">
                 <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
                 <label asp-for="Input.Password"></label>
