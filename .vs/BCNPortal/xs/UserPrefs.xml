@@ -2,22 +2,36 @@
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Identity/Pages/Account/Register.cshtml.cs">
     <Files>
-      <File FileName="BCNPortal/Areas/Identity/Pages/Account/Login.cshtml.cs" Line="102" Column="10" />
-      <File FileName="BCNPortal/Program.cs" Line="14" Column="25" />
+      <File FileName="BCNPortal/Areas/Identity/Pages/Account/Register.cshtml" Line="23" Column="26" />
+      <File FileName="BCNPortal/Areas/Identity/Pages/Account/Register.cshtml.cs" Line="154" Column="54" />
+      <File FileName="BCNPortal/Services/BcnUser/BcnUserService.cs" Line="13" Column="58" />
+      <File FileName="BCNPortal/Models/BcnUserAccount.cs" Line="3" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BCNPortal" expanded="True">
             <Node name="BCNPortal" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Identity" expanded="True">
+                  <Node name="Pages" expanded="True">
+                    <Node name="Account" expanded="True">
+                      <Node name="Login.cshtml" expanded="True" />
+                      <Node name="Register.cshtml" expanded="True" />
+                    </Node>
+                  </Node>
+                </Node>
               </Node>
-              <Node name="Areas" expanded="True" />
+              <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="ApiRequest" expanded="True" />
+                <Node name="BcnUser" expanded="True" />
+              </Node>
+              <Node name="Utility" expanded="True" />
             </Node>
           </Node>
         </State>
