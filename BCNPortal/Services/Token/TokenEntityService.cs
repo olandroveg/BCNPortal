@@ -21,6 +21,7 @@ namespace BCNPortal.Services.Token
                 formerToken.Value = token.Value;
                 formerToken.DateTime = token.DateTime;
                 _context.Token.Update(formerToken);
+                await _context.SaveChangesAsync();
                 return formerToken;
             }
             else
@@ -36,6 +37,7 @@ namespace BCNPortal.Services.Token
         }
         public bool TokenAvailability()
         {
+            // set token renewal as 30 min interval.
             var formerToken = _context.Token.AsEnumerable().FirstOrDefault();
             if (formerToken != null && formerToken.Id != Guid.Empty && (((DateTime.Now - formerToken.DateTime).TotalMinutes)< 30))
                 return true;

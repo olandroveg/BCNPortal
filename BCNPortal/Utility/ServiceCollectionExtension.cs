@@ -11,7 +11,7 @@ namespace BCNPortal.Utility
             services.AddTransient<ITokenRequestService, TokenRequestService>();
             services.AddTransient<ITokenEntityService, TokenEntityService>();
             services.AddTransient<IBcnUserService, BcnUserService>();
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            
         }
     }
 }
