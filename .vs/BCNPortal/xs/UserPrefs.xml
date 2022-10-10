@@ -1,14 +1,9 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Services/ApiRequest/TokenRequestService.cs">
     <Files>
-      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="67" Column="14" />
+      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="56" Column="14" />
       <File FileName="BCNPortal/appsettings.json" Line="11" Column="2" />
     </Files>
     <Pads>
@@ -21,9 +16,7 @@
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
-                <Node name="ApiRequest" expanded="True">
-                  <Node name="TokenRequestService.cs" selected="True" />
-                </Node>
+                <Node name="ApiRequest" expanded="True" />
                 <Node name="BcnUser" expanded="True" />
                 <Node name="Token" expanded="True" />
               </Node>
@@ -37,4 +30,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
