@@ -1,0 +1,443 @@
+﻿body {
+    font-family: Trebuchet MS; 
+}
+.header-panel-box {
+    background-color: #F6F8F8;
+    padding: 12px 24px;  
+}
+
+.without-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.btn-primary-text {
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 12pt;
+    color: #ffffff;
+}
+
+.btn-right-text {
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 10pt;
+    color: #ffffff;
+}
+
+.big-table-header {
+    background-color: #225ad8 !important;
+    color: #ffffff !important;
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 1em;
+}
+
+.modal-delete-header {
+    background-color: #225ad8 !important;
+}
+
+.modal-forgot-header-text {
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 20pt;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.modal-forgot-body-text {
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #000000;
+}
+
+.buttonsForms {
+    background-color: #225ad8 !important;
+    color: #ffffff !important;
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 14pt;
+}
+
+.without-padding {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+.header-panel-text {
+    font-size: 18pt;
+    font-weight: bold;
+    font-family: Lucida Sans Unicode Regular;
+    color: #1d212a;
+}
+
+.header-right-text {
+    font-size: 12pt;
+    font-weight: bold;
+    font-family: Lucida Sans Unicode Regular;
+    color: #1d212a;
+}
+
+.header-panel-subtext {
+    font-size: 19pt;
+    font-family: Lucida Sans Unicode Regular;
+    color: #696969;
+}
+
+.btn-primary {
+    -ms-text-shadow: none;
+    text-shadow: none;
+    background-color: #ffab40;
+    border-color: #ff950d;
+    border-color: rgba(0,0,0,.15);
+    color: #ffffff;
+    border-color: rgba(0,0,0,.1);
+    cursor: pointer !important;
+}
+
+.btn-default, .btn-default:hover, .btn-default:focus {
+    -ms-text-shadow: none;
+    text-shadow: none;
+    background-color: #ffffff;
+    font-weight: normal;
+    border-color: #ffffff;
+    border-color: rgba(0,0,0,.15);
+    color: #1d212a;
+    border-color: rgba(0,0,0,.1);
+    cursor: pointer !important;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+   -ms-text-shadow: none;
+   text-shadow: none;
+   background-color: #ff950d;
+   border-color: #ff950d;
+   border-color: rgba(0,0,0,.15);
+   color: #ffffff;
+   border-color: rgba(0,0,0,.1);
+   cursor: pointer !important;
+}
+
+.btn-remove, .btn-remove:focus, .btn-remove:hover {
+    -ms-text-shadow: none;
+    text-shadow: none;
+    background-color: #e84e40 !important;
+    border-color: #e52b1a !important;
+    border-color: rgba(0,0,0,.15);
+    color: #ffffff;
+    border-color: rgba(0,0,0,.1);
+    cursor: pointer !important;
+}
+
+.insert-ad-characters {
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 11pt;
+    color: #999999;
+}
+
+.area-three {
+    height: 212px !important;
+    width: 100%;
+    -moz-resize: none;
+    -ms-resize: none;
+    -o-resize: none;
+    resize: none;
+}
+
+.top-10 {
+    margin-top: 10px;
+}
+
+.top-20 {
+    margin-top: 20px;
+}
+
+.upload-image {
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    background-color: #ffffff;
+}
+
+.subCateg-name {
+    font-family: Lucida Sans Unicode Regular;
+    color: #ffffff;
+    font-size: 12pt;
+}
+
+table a {
+    color: #337ab7 !important;
+    text-decoration: none !important;
+    outline: none;
+}
+
+.small-table-body>a {
+    color: #337ab7 !important;
+    text-decoration: none !important;
+    outline: none;
+    font-size: 0.9em;
+}
+
+.small-table-body>a:hover {
+    color: #337ab7 !important;
+    text-decoration: none !important;
+    outline: none;
+    font-size: 0.9em;
+}
+
+thead .mybuttonsForms {
+    color: white !important
+}
+
+.custom-loader-color {
+    color: #225ad8 !important;
+    font-size: 50px !important;
+}
+
+.custom-loader-background, .dataTables_processing {
+    background-color: transparent !important;
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+
+.tab-header {
+    background-color: #f0f3f4;
+}
+
+.nav-tabs.nav-tabs-v2 .active a {
+    background-color: #ffffff !important;
+}
+
+.tab-content > .active {
+    background-color: #ffffff;
+}
+
+span.select2-selection.select2-selection--single {
+    outline: none;
+}
+
+.font-dropdown {
+    font-family: Arial;
+    font-size: 14pt;
+    color: #000000;
+}
+
+.font-minimal {
+    font-family: Arial;
+    font-size: 12pt;
+    font-style: italic;
+    color: #000000;
+}
+
+table.fixedHeader-floating {
+    top: 114px !important;
+    z-index: 99999 !important;
+}
+
+.custom-loader-color {
+    color: #225ad8 !important;
+    font-size: 50px !important;
+}
+
+.custom-loader-background, .dataTables_processing {
+    background-color: transparent !important;
+    -webkit-box-shadow: none;
+    -ms-box-shadow: none;
+    box-shadow: none;
+}
+
+.custom-middle-align {
+    vertical-align: middle !important;
+}
+
+.editlink-in-table {
+    font-family: Lucida Sans Unicode Regular;
+    color: #ffab40;
+    font-weight: normal;
+    font-size: 12pt;
+}
+
+.deletelink-in-table {
+    font-family: Lucida Sans Unicode Regular;
+    color: #da2d16;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.editlink-in-table:hover {
+    font-family: Lucida Sans Unicode Regular;
+    color: #ff950d;
+    font-size: 12pt;
+}
+
+.deletelink-in-table:hover {
+    font-family: Lucida Sans Unicode Regular;
+    color: #b91600;
+    font-size: 12pt;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.icon-tab {
+    padding-right: 10px;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus {
+    background-color: #225ad8;
+}
+
+.select2-search__field {
+    width: 100% !important;
+}
+
+div.dataTables_wrapper div.dataTables_processing {
+    padding: 0 !important;
+}
+
+.big-table-header {
+    background-color: #225ad8 !important;
+    color: #ffffff !important;
+    font-family: Lucida Sans Unicode Regular !important;
+    font-size: 11px !important;
+}
+
+.small-table-header {
+    background-color: #225ad8 !important;
+    color: #ffffff !important;
+    font-family: Lucida Sans Unicode Regular !important;
+    font-size: 1.1em !important;
+}
+
+.big-table-body {
+    font-family: Lucida Sans Unicode Regular;
+    color: #000000;
+    font-size: 12px;
+}
+
+.small-table-body {
+    font-family: Lucida Sans Unicode Regular;
+    color: #000000;
+    font-size: 1em;
+}
+
+a, a:active, a:focus {
+    color: #0066cc;
+    font-family: Lucida Sans Unicode Regular;
+    font-size: 13px;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+td.custom-middle-align.custom-middle-align {
+    font-size: 13px;
+    font-family: Lucida Sans Unicode Regular;
+    font-weight: normal;
+    color: #000000;
+}
+
+.tab-report {
+    font-size: 13pt !important;
+}
+
+.nav-tabs > li.active > .tab-report, .nav-tabs > li.active > .tab-report:hover {
+    font-size: 13pt !important;
+    font-family: Lucida Sans Unicode Regular;
+    font-weight: normal;
+    color: #225ad8 !important;
+    border-bottom: none;
+}
+
+.top-10 {
+    margin-top: 10px;
+}
+
+.dtp-date-view {
+    width: 330px;
+    background-color: #ffffff;
+}
+
+.dtp .dtp-close {
+    right: -1.5rem !important;
+}
+
+.dtp table.dtp-picker-days tr > td > a, .dtp .dtp-picker-time > a {
+    color: #1a1a1a !important;
+}
+
+.dtp table.dtp-picker-days tr > th {
+    color: #1a1a1a !important;
+    font-weight: bold !important;
+}
+
+@-webkit-keyframes overlay {
+    from {
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@keyframes overlay {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+.overlay {
+    -webkit-animation: overlay 2s linear infinite;
+    -moz-animation: overlay 2s linear infinite;
+    -ms-animation: overlay 2s linear infinite;
+    -o-animation: overlay 2s linear infinite;
+    animation: overlay 2s linear infinite;
+}
+
+.select2-search {
+    width: 100%;
+}
+
+.xtable-showing {
+    color: #000000;
+    font-size: 0.8em;
+    font-family: Lucida Sans Unicode Regular;
+}
+
+.sub-panel-header {
+    color: #e8e8e8 !important;
+    padding: 10px !important;
+    background-color: #1d212a !important;
+    text-transform: uppercase !important;
+    font-weight: normal !important;
+    font-size: 1.10em !important;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > thead > tr > td {
+    border-bottom-width: 0 !important;
+}
+
+.bg-white{color: white !important}
+
+.area-proper {
+    resize: none;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
