@@ -1,0 +1,86 @@
+﻿@model BcNodeContentViewModel
+@{
+    Layout = "_Layout";
+}
+@section Styles
+{
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/admin/admin.css" />
+        <link rel="stylesheet" href="~/lib/lobibox/css/lobibox.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/dropzone.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/basic.css" />
+        <link rel="stylesheet" href="/lib/select2/select2.css" />
+        <link rel="stylesheet" href="~/lib/icheck/css/flat/_all.css" />
+    </environment>
+
+    <environment names="Production">
+       <link rel="stylesheet" href="~/css/admin/admin.css" />
+        <link rel="stylesheet" href="~/lib/lobibox/css/lobibox.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/dropzone.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/basic.css" />
+        <link rel="stylesheet" href="/lib/select2/select2.css" />
+        <link rel="stylesheet" href="~/lib/icheck/css/flat/_all.css" />
+    </environment>
+}
+<section class="main-content-wrapper">
+    <form asp-action="EditBcNodeContent" method="post" asp-antiforgery="true" enctype="multipart/form-data" style="padding: 0" novalidate>       
+        @await Html.PartialAsync("_CreateEditBcNodeContentPartial", Model)
+    </form>
+</section>
+
+@section Scripts
+{
+    @{ var succRemoveContent = TempData["RemoveContentSuccess"] ?? false;
+                        var succEditContent = TempData["SuccContentUpdated"] ?? false;
+                        var succAddContent = TempData["SuccContentCreated"] ?? false;
+                        
+
+    }
+    <environment names="Development">
+        <script type="text/javascript" src="~/js/admin/util.js"></script>
+        <script type="text/javascript" src="~/lib/icheck/js/icheck.min.js"></script>
+        <script type="text/javascript" src="~/lib/dropzone/js/dropzone.min.js"></script>
+        <script type="text/javascript" src="/lib/select2/select2.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation/dist/jquery.*.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation-unobtrusive/*.min.js"></script>
+
+        <script type="text/javascript" src="~/lib/dataTables-1.10.18/js/jquery.datatables.js"></script>
+    <script type="text/javascript" src="~/lib/dataTables-1.10.18/js/dataTables.bootstrap.js"></script>
+    <script type="text/javascript" src="~/lib/responsive/js/dataTables.responsive.js"></script>
+    <script type="text/javascript" src="~/lib/responsive/js/responsive.bootstrap.js"></script>
+    <script type="text/javascript" src="~/lib/filteOnReturn/fnFilterOnReturn.js"></script>
+
+    <script type="text/javascript" src="~/lib/select2/select2.js"></script>
+    <script type="text/javascript" src="~/lib/lobibox/js/lobibox.js"></script>
+    <script type="text/javascript" src="~/lib/icheck/js/icheck.min.js"></script>
+    <script type="text/javascript" src="~/js/admin/bcnodecontents.js"></script>
+        
+    </environment>
+
+    <environment names="Production">
+        <script type="text/javascript" src="~/js/admin/util.js"></script>
+        <script type="text/javascript" src="~/lib/icheck/js/icheck.min.js"></script>
+        <script type="text/javascript" src="~/lib/dropzone/js/dropzone.min.js"></script>
+        <script type="text/javascript" src="/lib/select2/select2.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation/dist/jquery.*.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation-unobtrusive/*.min.js"></script>
+
+        <script type="text/javascript" src="~/lib/dataTables-1.10.18/js/jquery.datatables.js"></script>
+        <script type="text/javascript" src="~/lib/dataTables-1.10.18/js/dataTables.bootstrap.js"></script>
+        <script type="text/javascript" src="~/lib/responsive/js/dataTables.responsive.js"></script>
+        <script type="text/javascript" src="~/lib/responsive/js/responsive.bootstrap.js"></script>
+        <script type="text/javascript" src="~/lib/filteOnReturn/fnFilterOnReturn.js"></script>
+
+        <script type="text/javascript" src="~/lib/select2/select2.js"></script>
+        <script type="text/javascript" src="~/lib/lobibox/js/lobibox.js"></script>
+        <script type="text/javascript" src="~/lib/icheck/js/icheck.min.js"></script>
+        <script type="text/javascript" src="~/js/admin/bcnodecontents.js"></script>
+    </environment>
+
+    <script type="text/javascript">$(document).ready(function() {
+            //initializeSelect2();
+            //intializeMultiSelect2();
+            //InitializeScroll('bcnode-panel', "save", "saveContinue", null);
+            LoadNotificationsContents('@succRemoveContent', '@succEditContent', '@succAddContent');
+        });</script>
+}

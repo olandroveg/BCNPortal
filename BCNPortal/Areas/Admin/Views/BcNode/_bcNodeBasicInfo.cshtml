@@ -1,0 +1,70 @@
+﻿@model CreateEditBcNodeViewModel
+
+<div class="panel-body">
+
+    <div class="row without-margin" style="margin-top: 30px">
+        <div class="col-md-4">
+            @if (Model.BcNodeId != null && Model.BcNodeId != string.Empty)
+            {
+                <input id="BcNodeIdInput" type="hidden" asp-for="BcNodeId" />
+                <input id="UserIdIdInput" type="hidden" asp-for="UserId" />
+            }
+            <div class="row without-margin">
+                <div class="col-md-12">
+                    <div class="row without-margin">
+                        <label name="SelectedBcNodeId" asp-for="SelectedBcNodeId"></label>
+                    </div>
+                    <div class="row without-margin">
+                        <select name="SelectedBcNodeId" asp-for="SelectedBcNodeId" asp-items="@(new SelectList(Model.bcNodeList,"Id", "Name"))" style="width: 100%" id="bcNodeSelect">
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label name="Latitude" asp-for="Latitude"></label>
+                <input name="Latitude" class="form-control" asp-for="Latitude" readonly />
+                
+            </div>
+            <div class="form-group">
+                <label name="Longitude" asp-for="Longitude"></label>
+                <input name="Longitude" class="form-control" asp-for="Longitude" readonly />
+                
+            </div>
+
+            <div class="form-group">
+                <label name="Name" asp-for="Name"></label>
+                <input name="Name" class="form-control" asp-for="Name" />
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label name="Description" asp-for="Description"></label>
+                <input name="Description" class="form-control" asp-for="Description" />
+                <span asp-validation-for="@Model.Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label name="Group" asp-for="Group"></label>
+                <input name="Group" class="form-control" asp-for="Group" />
+                <span asp-validation-for="@Model.Group" class="text-danger"></span>
+            </div>
+
+            <div class="row without-margin">
+                <div class="col-md-12">
+                    <div class="row without-margin">
+                        <label name="SelectedLocationId" asp-for="SelectedLocationId"></label>
+                    </div>
+                    <div class="row without-margin">
+                        <select name="SelectedLocationId" asp-for="SelectedLocationId" asp-items="@(new SelectList(Model.Locations,"Id", "Location"))" style="width: 100%" id="locationsSelect">
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
