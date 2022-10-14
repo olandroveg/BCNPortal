@@ -21,5 +21,9 @@ namespace BCNPortal.Services.BcnUser
             await _context.SaveChangesAsync();
             return bcnUserAccount.Id;
         }
+        public BcnUserAccount GetBcnUserAccountByUserPortalId (Guid id)
+        {
+            return _context.BcnUserAccount.Where(x => x.PortalUserId == id).FirstOrDefault();
+        }
     }
 }

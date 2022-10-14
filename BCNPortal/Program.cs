@@ -3,10 +3,16 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 //using BCNPortal.Areas.Identity.Data;
 using BCNPortal.Utility;
+using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.BcnUser;
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
+
+// Revisar builder.Services.UseInjection(), si hay q comentarearlo para la construccion de las 1ras tablas de BD, y despues descomentarearlo...probar a ver
 builder.Services.UseInjection();
+
+
 builder.Services.AddAntiforgery(opts =>
 {
     opts.HeaderName = "__RequestVerificationToken";
@@ -16,6 +22,7 @@ if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development
     connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 else
     connectionString = builder.Configuration.GetConnectionString("ProductionConnection") ?? throw new InvalidOperationException("Connection string 'ProductionConnection' not found.");
+
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseMySql(connectionString, new MySqlServerVersion(new Version("8.0.30"))));
@@ -29,6 +36,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+//builder.Services.AddHttpContextAccessor();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

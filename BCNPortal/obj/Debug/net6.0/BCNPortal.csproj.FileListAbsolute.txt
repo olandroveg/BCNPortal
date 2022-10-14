@@ -537,6 +537,7 @@ C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\BC
 C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\BCNPortal.RazorAssemblyInfo.cs
 C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\staticwebassets.build.json
 C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout-2.cshtml.rz.scp.css
 C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\scopedcss\bundle\BCNPortal.styles.css
 C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal\obj\Debug\net6.0\scopedcss\projectbundle\BCNPortal.bundle.scp.css

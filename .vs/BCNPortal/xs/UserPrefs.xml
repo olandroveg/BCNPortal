@@ -1,23 +1,26 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Program.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Services/ApiRequest/TokenRequestService.cs">
     <Files>
-      <File FileName="BCNPortal/Areas/Identity/Pages/Account/Login.cshtml.cs" Line="102" Column="10" />
-      <File FileName="BCNPortal/Program.cs" Line="14" Column="25" />
+      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="56" Column="14" />
+      <File FileName="BCNPortal/appsettings.json" Line="11" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BCNPortal" expanded="True">
             <Node name="BCNPortal" expanded="True">
-              <Node name="Dependencies" expanded="True">
-                <Node name="PackageDependencies" expanded="True" />
-              </Node>
               <Node name="Areas" expanded="True" />
+              <Node name="Controllers" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
+              <Node name="Services" expanded="True">
+                <Node name="ApiRequest" expanded="True" />
+                <Node name="BcnUser" expanded="True" />
+                <Node name="Token" expanded="True" />
+              </Node>
+              <Node name="Utility" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -30,5 +33,6 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
