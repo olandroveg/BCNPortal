@@ -1,0 +1,76 @@
+﻿.sticky {
+    position: fixed;
+    z-index: 100;
+    top: 60px;
+    background: #2283ED;
+    -ms-text-shadow: none;
+    text-shadow: none;
+    border-bottom: 1px solid #ccc;
+    height: 60px
+} 
+.panel-default > .panel-heading {
+    background: #fff;
+}
+.pageheader h1 {
+    margin-top: 10px !important
+}
+.panel {
+    border: none !important;
+}
+.sticky > h1 {
+    color: white;
+}
+.top-60{margin-top: 60px !important}
+.btn-header {
+    float: right;
+    margin-top: 12px;
+    background: rgb(255, 171, 64);
+    margin-right: 5px;
+}
+.collapse{display: none !important}
+.padding-340 {
+    padding-right: 340px !important
+}
+.pointer{cursor: pointer !important}
+.panel-primary > .panel-heading {
+    border-radius: 0
+}
+.btn-table {
+    padding: 4px 10px !important;
+    margin-right: 15px
+}
+.padding-4{padding: 4px !important}
+.text-right{text-align: right}
+.error-caption {
+    margin-left: 10px;
+}
+.validation-summary-valid>.error-caption {
+    display: none
+}
+.btn-table-black {color: black !important}
+.btn-table-white {color: white !important}
+.btn-table-black:hover {color: black !important}
+a{cursor: pointer}
+.img-admin {
+    height: 40px;
+    width: auto;
+    margin-top: -2px;
+}
+.tab-content > .active {
+    display: inline-block;
+}
+.links>a{font-size: 11pt !important}
+.tr-top {
+    border-top: 2px solid #556b8d !important
+}
+
+.paddding-editRestaurants {
+    padding: 87px 0
+}
+.tab-content > .tab-pane {
+    display: none;
+}
+
+.tab-content > .active {
+    display: block;
+}
