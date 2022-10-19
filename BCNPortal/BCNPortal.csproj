@@ -26,6 +26,5 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
-    <Folder Include="Areas\Admin\" />
   </ItemGroup>
 </Project>
