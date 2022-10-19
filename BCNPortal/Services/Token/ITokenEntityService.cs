@@ -4,7 +4,7 @@
     {
         public Task<BCNPortal.Models.Token> AddOrUpdate(BCNPortal.Models.Token token);
         public void Delete(BCNPortal.Models.Token token);
-        public bool TokenAvailability();
-        public string GetToken();
+        public bool TokenAvailability(Guid userId);
+        public string GetToken(Guid userId);
     }
 }

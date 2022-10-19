@@ -18,7 +18,7 @@ namespace BCNPortal.Services.ApiRequest
             _tokenApi = StaticConfigurationManager.AppSetting["ApiAddress:AAF_getToken"];
             _tokenEntityService = tokenEntityService;
         }
-        private async Task <TokenApi> RequestToken(string username, string password)
+        private async Task <TokenApi> RequestToken(string username, string password, Guid userId)
         {
             var tokenApi = new TokenApi();
             try
@@ -39,7 +39,9 @@ namespace BCNPortal.Services.ApiRequest
                                 {
                                     Id = Guid.Empty,
                                     Value = tokenApi.token,
-                                    DateTime = DateTime.Now
+                                    DateTime = DateTime.Now,
+                                    BcnUserId = tokenApi.bcnId,
+                                    PortalUserId = userId
                                 };
                                 await _tokenEntityService.AddOrUpdate(token);
                                 return tokenApi;
@@ -58,14 +60,15 @@ namespace BCNPortal.Services.ApiRequest
                 return tokenApi;
             }
         }
-        public async Task<string> ManageToken(string username, string password)
+        public async Task<string> ManageToken(string username, string password, Guid userId)
         {
+            
             string token = string.Empty;
-            if (_tokenEntityService.TokenAvailability())
-                token = _tokenEntityService.GetToken();
+            if (_tokenEntityService.TokenAvailability(userId))
+                token = _tokenEntityService.GetToken(userId);
             else
             {
-                var tokenApi = await RequestToken(username, password);
+                var tokenApi = await RequestToken(username, password, userId);
                 if (tokenApi.status == "Success")
                     token = tokenApi.token;
             }

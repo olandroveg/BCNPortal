@@ -28,25 +28,31 @@ namespace BCNPortal.Controllers
             _bcnUserService = bcnUserService;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
+        {
+            
+            return View();
+        }
+
+        private async Task<string> GetToken()
         {
             // get username of the logged user
             var userId = Guid.Empty;
             var bcnPassword = "";
             var bcnUsername = "";
-            string token;
+            string token = "";
             var loggedUser = await _userManager.GetUserAsync(HttpContext.User);
             if (loggedUser != null)
             {
-                userId = Guid.Parse( await _userManager.GetUserIdAsync(loggedUser));
+                userId = Guid.Parse(await _userManager.GetUserIdAsync(loggedUser));
                 var bcnUser2 = _bcnUserService.GetBcnUserAccountByUserPortalId(userId);
                 bcnPassword = bcnUser2.BcnPassword;
                 bcnUsername = bcnUser2.BcnUsername;
-                
+
             }
-            if (bcnUsername != "" && bcnPassword != "")            
-                token = await _tokenService.ManageToken(bcnUsername, bcnPassword);
-            return View();
+            if (bcnUsername != "" && bcnPassword != "")
+                token = await _tokenService.ManageToken(bcnUsername, bcnPassword, userId);
+            return token;
         }
         
         public IActionResult Privacy()

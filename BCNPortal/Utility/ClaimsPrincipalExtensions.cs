@@ -23,6 +23,6 @@ namespace BCNPortal.Utility
         {
             return Guid.Parse(principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value);
         }
-
+        
     }
 }
