@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
+    <None Remove="Areas\Admin\" />
   </ItemGroup>
 
   <ItemGroup>
