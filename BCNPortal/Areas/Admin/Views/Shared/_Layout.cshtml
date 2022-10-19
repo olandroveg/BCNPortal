@@ -1,0 +1,179 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    
+    <environment names="Development">
+       
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+     <link rel="stylesheet" href="~/css/admin/bootstrap.css"/>
+      
+    
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/assets/css/app.css">
+    <link rel="shortcut icon" href="~/assets/images/favicon.svg" type="image/x-icon">
+
+      <link rel="stylesheet" href="~/css/admin/font-awesome.min.css"/>
+        <link rel="stylesheet" href="~/css/admin/simple-line-icons.css"/>
+        <link rel="stylesheet" href="~/lib/switchery/switchery.min.css"/>
+        <link rel="stylesheet" href="~/css/admin/animate.css"/>
+        <link rel="stylesheet" href="~/css/admin/main.css"/>
+        <link rel="stylesheet" href="~/css/admin/custom-layout.css"/>  
+       
+
+    </environment>
+    <environment names="Production">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+   
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+     <link rel="stylesheet" href="~/css/admin/bootstrap.css"/>
+      
+    
+    <link rel="stylesheet" href="~/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="~/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/assets/css/app.css">
+    <link rel="shortcut icon" href="~/assets/images/favicon.svg" type="image/x-icon">
+
+      <link rel="stylesheet" href="~/css/admin/font-awesome.min.css"/>
+        <link rel="stylesheet" href="~/css/admin/simple-line-icons.css"/>
+        <link rel="stylesheet" href="~/lib/switchery/switchery.min.css"/>
+        <link rel="stylesheet" href="~/css/admin/animate.css"/>
+        <link rel="stylesheet" href="~/css/admin/main.css"/>
+        <link rel="stylesheet" href="~/css/admin/custom-layout.css"/>  
+       
+    </environment>
+    @RenderSection("Styles", false)
+</head>
+
+<header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                @*<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CoreNetwork</a>*@
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>*@
+                        @*<li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>*@
+                    </ul>
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+</header>
+
+
+
+
+<body>
+    <div>
+        <div id="app">
+            <div id="sidebar" class="active">
+                <div class="sidebar-wrapper active">
+                    <div class="sidebar-header">
+                        <div class="d-flex justify-content-between">
+                            <div class="logo">
+                                <a href="http://www.ehu.eus/tsr_radio/"><img style ="height:3rem" src="~/assets/images/logo/logo_TSR.png" alt="Logo" srcset=""></a>
+                            </div>
+                            <div class="toggler">
+                                <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-menu">
+                        <ul class="menu">
+                            <li class="sidebar-title">Dashboard</li>
+            
+            
+                            <li
+                                class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i class="bi bi-stack"></i>
+                                    <span>bcNodes</span>
+                                </a>
+                                <ul class="submenu ">
+                                    
+                                    <li class="submenu-item ">
+                                        <a asp-controller="BcNode" asp-action="Index" title="bcNodes">
+                                            <i class="fa"></i> BcNodes
+                                        </a>
+                                    </li>
+                                    <li class="submenu-item ">
+                                        <a asp-controller="Content" asp-action="Index" title="Content">
+                                            <i class="fa"></i> Contents
+                                        </a>
+                                    </li>
+                    
+                                </ul>
+                            </li>
+                           
+            
+                            <li
+                                class="sidebar-item  has-sub">
+                                <a href="#" class='sidebar-link'>
+                                    <i class="bi bi-stack"></i>
+                                    <span>Locations</span>
+                                </a>
+                                <ul class="submenu ">
+                                   <li class="submenu-item ">
+                                        <a asp-controller="Location" asp-action="Index" title="Locations">
+                                            <i class="fa"></i> Locations
+                                        </a>
+                                    </li>
+                    
+                                </ul>
+                            </li>
+            
+                        </ul>
+                    </div>
+                    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+                   </div>
+                  </div>
+                 </div>
+        @RenderBody()
+    </div>
+    
+    <environment names="Development">
+        <script src="~/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/mazer.js"></script>
+
+        <script asp-src-include="~/lib/jquery/dist/*.min.js"></script>
+        <script src="~/js/admin/layout/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="~/lib/navgoco/jquery.navgoco.min.js"></script>
+        <script src="~/lib/switchery/switchery.min.js"></script>
+        <script src="~/lib/pace/pace.min.js"></script>
+        <script src="~/lib/fullscreen/jquery.fullscreen-min.js"></script>
+        <script src="~/js/admin/layout/app.js"></script>
+    </environment>
+<environment names="Production">
+   <script src="~/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+        <script src="~/assets/js/mazer.js"></script>
+
+        <script asp-src-include="~/lib/jquery/dist/*.min.js"></script>
+        <script src="~/js/admin/layout/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="~/lib/navgoco/jquery.navgoco.min.js"></script>
+        <script src="~/lib/switchery/switchery.min.js"></script>
+        <script src="~/lib/pace/pace.min.js"></script>
+        <script src="~/lib/fullscreen/jquery.fullscreen-min.js"></script>
+        <script src="~/js/admin/layout/app.js"></script>
+</environment>
+
+
+    @RenderSection("Scripts", false)
+</body>
+</html>

@@ -15,6 +15,98 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\1094545\source\repos\olandroveg\BCNPortal\BCNPortal
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Backend/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmFja2VuZFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXEFkZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/AddBcNodeContent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXEFkZEJjTm9kZUNvbnRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/EditBcNodeContent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXEVkaXRCY05vZGVDb250ZW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXGluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_bcNodeBasicInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9iY05vZGVCYXNpY0luZm8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_bcNodeContentAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9iY05vZGVDb250ZW50QWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_bcNodeContentBasicInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9iY05vZGVDb250ZW50QmFzaWNJbmZvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_bcNodeContentIndex.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9iY05vZGVDb250ZW50SW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_CreateAddBcNodeContentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9DcmVhdGVBZGRCY05vZGVDb250ZW50UGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_CreateEditBcNodeContentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9DcmVhdGVFZGl0QmNOb2RlQ29udGVudFBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_CreateEditBcNodePartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQmNOb2RlXF9DcmVhdGVFZGl0QmNOb2RlUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Content/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGVudFxBZGQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Content/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGVudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Content/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGVudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Content/_CreateEditContentPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ29udGVudFxfQ3JlYXRlRWRpdENvbnRlbnRQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Location/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTG9jYXRpb25cQWRkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Location/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTG9jYXRpb25cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Location/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTG9jYXRpb25caW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Location/_CreateEditLocationPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTG9jYXRpb25cX0NyZWF0ZUVkaXRMb2NhdGlvblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Admin/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/1094545/source/repos/olandroveg/BCNPortal/BCNPortal/Areas/Identity/Pages/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

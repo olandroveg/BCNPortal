@@ -1,0 +1,61 @@
+﻿@model CreateEditContentViewModel
+
+@{
+    Layout = "_Layout";
+}
+@section Styles
+{
+    <environment names="Development">
+
+        <link rel="stylesheet" href="~/css/admin/admin.css" />
+        <link rel="stylesheet" href="~/lib/lobibox/css/lobibox.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/dropzone.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/basic.css" />
+        <link rel="stylesheet" href="/lib/select2/select2.css" />
+        <link rel="stylesheet" href="~/lib/icheck/css/flat/_all.css" />
+        <link rel="stylesheet" href="~/css/admin/main.css" />
+    </environment>
+
+    <environment names="Production">
+        <link rel="stylesheet" href="~/css/admin/admin.css" />
+        <link rel="stylesheet" href="~/lib/lobibox/css/lobibox.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/dropzone.css" />
+        <link rel="stylesheet" href="~/lib/dropzone/css/basic.css" />
+        <link rel="stylesheet" href="/lib/select2/select2.css" />
+        <link rel="stylesheet" href="~/lib/icheck/css/flat/_all.css" />
+        <link rel="stylesheet" href="~/css/admin/main.css" />
+    </environment>
+}
+<section class="main-content-wrapper">
+    <form asp-action="Add" method="post" asp-antiforgery="true" enctype="multipart/form-data" novalidate>
+        @await Html.PartialAsync("_CreateEditContentPartial", Model)
+    </form>
+</section>
+@section Scripts
+{
+    <environment names="Development">
+        <script type="text/javascript" src="~/js/admin/util.js"></script>
+        <script type="text/javascript" src="~/lib/icheck/js/icheck.min.js"></script>
+        <script type="text/javascript" src="~/lib/dropzone/js/dropzone.min.js"></script>
+        <script type="text/javascript" src="/lib/select2/select2.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation/dist/jquery.*.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation-unobtrusive/*.min.js"></script>
+    </environment>
+
+    <environment names="Production">
+       <script type="text/javascript" src="~/js/admin/util.js"></script>
+        <script type="text/javascript" src="~/lib/icheck/js/icheck.min.js"></script>
+        <script type="text/javascript" src="~/lib/dropzone/js/dropzone.min.js"></script>
+        <script type="text/javascript" src="/lib/select2/select2.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation/dist/jquery.*.min.js"></script>
+        <script asp-src-include="~/lib/jquery-validation-unobtrusive/*.min.js"></script>
+    </environment>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initializeSelect2();
+            intializeMultiSelect2();
+            InitializeScroll('content-panel', "save", "saveContinue", null);
+        });
+    </script>
+}
