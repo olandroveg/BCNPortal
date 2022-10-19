@@ -15,6 +15,7 @@ namespace BCNPortal.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+            //var userId = ClaimsPrincipalExtensions.GetUserId(User);
             return View(nameof(Index));
         }
 

@@ -19,6 +19,10 @@ namespace BCNPortal.Utility
             return user == accessUser;
             
         }
+        public static Guid GetUserId (this ClaimsPrincipal principal)
+        {
+            return Guid.Parse(principal.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value);
+        }
 
     }
 }
