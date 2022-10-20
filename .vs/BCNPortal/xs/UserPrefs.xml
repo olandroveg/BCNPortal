@@ -1,11 +1,15 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/_ViewImports.cshtml">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs">
     <Files>
-      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="44" Column="78" />
-      <File FileName="BCNPortal/appsettings.json" Line="11" Column="2" />
-      <File FileName="BCNPortal/Areas/Admin/_ViewImports.cshtml" Line="9" Column="53" />
+      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="57" Column="31" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="24" Column="103" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="124" Column="45" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/IBcNodeService.cs" Line="12" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,11 +17,18 @@
           <Node name="BCNPortal" expanded="True">
             <Node name="BCNPortal" expanded="True">
               <Node name="Areas" expanded="True">
-                <Node name="Admin" expanded="True" />
+                <Node name="Admin" expanded="True">
+                  <Node name="Controllers" expanded="True" />
+                </Node>
+              </Node>
+              <Node name="DTO" expanded="True">
+                <Node name="BcNode" expanded="True" />
               </Node>
               <Node name="Services" expanded="True">
                 <Node name="ApiRequest" expanded="True" />
+                <Node name="BcNodeRqst" expanded="True" />
               </Node>
+              <Node name="Utility" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -27,9 +38,6 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
