@@ -40,7 +40,7 @@ namespace BCNPortal.Services.ApiRequest
                                     Id = Guid.Empty,
                                     Value = tokenApi.token,
                                     DateTime = DateTime.Now,
-                                    BcnUserId = tokenApi.bcnId,
+                                    BcnUserId = tokenApi.bcnUserId,
                                     PortalUserId = userId
                                 };
                                 await _tokenEntityService.AddOrUpdate(token);
@@ -60,17 +60,21 @@ namespace BCNPortal.Services.ApiRequest
                 return tokenApi;
             }
         }
-        public async Task<string> ManageToken(string username, string password, Guid userId)
+        public async Task<TokenPlusId> ManageToken(string username, string password, Guid userId)
         {
-            
-            string token = string.Empty;
+
+            TokenPlusId token = new TokenPlusId();
             if (_tokenEntityService.TokenAvailability(userId))
                 token = _tokenEntityService.GetToken(userId);
             else
             {
                 var tokenApi = await RequestToken(username, password, userId);
                 if (tokenApi.status == "Success")
-                    token = tokenApi.token;
+                {
+                    token.Token = tokenApi.token;
+                    token.BcnUserId = token.BcnUserId;
+                }
+                    
             }
             return token;
              

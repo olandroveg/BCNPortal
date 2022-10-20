@@ -43,9 +43,17 @@ namespace BCNPortal.Services.Token
                 return true;
             return false;
         }
-        public string GetToken(Guid userId)
+        public TokenPlusId GetToken(Guid userId)
         {
-            return _context.Token.Where(x => x.PortalUserId == userId).Count() > 0 ? _context.Token.FirstOrDefault(x=> x.PortalUserId == userId).Value : string.Empty;
+            var token = _context.Token.Where(x => x.PortalUserId == userId).Count() > 0 ? _context.Token.FirstOrDefault(x=> x.PortalUserId == userId) : null;
+            if (token != null)
+                return new TokenPlusId
+                {
+                    Token = token.Value,
+                    BcnUserId = token.BcnUserId
+
+                };
+            return null;
         }
 
     }
