@@ -1,4 +1,5 @@
 ﻿using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.BcNodeRqst;
 using BCNPortal.Services.BcnUser;
 using BCNPortal.Services.Token;
 
@@ -11,7 +12,8 @@ namespace BCNPortal.Utility
             services.AddTransient<ITokenRequestService, TokenRequestService>();
             services.AddTransient<ITokenEntityService, TokenEntityService>();
             services.AddTransient<IBcnUserService, BcnUserService>();
-            
+            services.AddTransient<IBcNodeService, BcNodeService>();
+
         }
     }
 }

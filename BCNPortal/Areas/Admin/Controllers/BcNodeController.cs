@@ -1,6 +1,9 @@
-﻿using BCNPortal.DTO.Filter;
+﻿using System.Text.Json;
+using BCNPortal.DTO.BcNode;
+using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.BcNodeRqst;
 using BCNPortal.Services.BcnUser;
 using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
@@ -18,17 +21,23 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly ITokenRequestService _tokenService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IBcnUserService _bcnUserService;
+        private readonly IBcNodeService _bcNodeService;
         private TokenPlusId? _tokenPlusId;
+        
 
         public BcNodeController
             (IBcnUserService bcnUserService,
             ITokenRequestService tokenService,
-            UserManager<IdentityUser> userManager)
+            UserManager<IdentityUser> userManager,
+            IBcNodeService bcNodeService)
+
+
             {
-            _tokenService = tokenService;
-            _bcnUserService = bcnUserService;
-            _userManager = userManager;
-            _tokenPlusId = null;
+                _tokenService = tokenService;
+                _bcnUserService = bcnUserService;
+                _userManager = userManager;
+                _tokenPlusId = null;
+                 _bcNodeService = bcNodeService;
             }
        
         
@@ -42,9 +51,9 @@ namespace BCNPortal.Areas.Admin.Controllers
         private async Task<TokenPlusId> GetToken()
         {
             // get username of the logged user
-            var userId = Guid.Empty;
             var bcnPassword = "";
             var bcnUsername = "";
+            var userId = Guid.Empty;
             var token = new TokenPlusId();
             var loggedUser = await _userManager.GetUserAsync(HttpContext.User);
             if (loggedUser != null)
@@ -98,7 +107,7 @@ namespace BCNPortal.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public IActionResult LoadBcNodes()
+        public async Task <IActionResult> LoadBcNodes()
         {
             JsonResult result = null;
 
@@ -120,7 +129,14 @@ namespace BCNPortal.Areas.Admin.Controllers
                 // aqui filters.Userid ponemos el userId del usuario del BCN que hubo insertado los bcNodes (admin@gmail, bcNode@gmail)
 
                 filters.Userid = _tokenPlusId != null ? _tokenPlusId.BcnUserId : Guid.Empty;
-                var data = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetBcNodes(filters));
+                var data = new List<BcNodeDto>();
+                if (_tokenPlusId != null && _tokenPlusId.Token != "")
+                    data = await _bcNodeService.GetBcNodes(_tokenPlusId, filters);
+                if (data.Count() == 1 && data.ElementAt(0).Description == "unauthorized")
+                {
+                    _tokenPlusId = await GetToken();
+                    data = await _bcNodeService.GetBcNodes(_tokenPlusId, filters);
+                }
                 var total = data.Count();
                 result = Json(new
                 {
