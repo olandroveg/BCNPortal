@@ -24,6 +24,7 @@ namespace BCNPortal.Services.BcNodeRqst
         public async Task <List<BcNodeDto>> GetBcNodes(TokenPlusId tokenPlusId, BaseFilter baseFilter)
         {
             var bcNodesDto = new List<BcNodeDto>();
+            
             try
             {
                 using (var httpClient = new HttpClient())

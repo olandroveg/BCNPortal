@@ -22,7 +22,7 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IBcnUserService _bcnUserService;
         private readonly IBcNodeService _bcNodeService;
-        private TokenPlusId? _tokenPlusId;
+        
         
 
         public BcNodeController
@@ -36,16 +36,15 @@ namespace BCNPortal.Areas.Admin.Controllers
                 _tokenService = tokenService;
                 _bcnUserService = bcnUserService;
                 _userManager = userManager;
-                _tokenPlusId = null;
                  _bcNodeService = bcNodeService;
             }
        
         
         [HttpGet]
-        public async Task< IActionResult> Index()
+        public  IActionResult Index()
         {
             //var userId = ClaimsPrincipalExtensions.GetUserId(User);
-            _tokenPlusId = await GetToken();
+            
             return View(nameof(Index));
         }
         private async Task<TokenPlusId> GetToken()
@@ -113,6 +112,7 @@ namespace BCNPortal.Areas.Admin.Controllers
 
             try
             {
+                var tokenPlusId = await GetToken();
                 var search = Request.Form["search[value]"][0];
                 var draw = Request.Form["draw"][0];
                 var orderDir = Request.Form["order[0][dir]"];
@@ -128,14 +128,14 @@ namespace BCNPortal.Areas.Admin.Controllers
                 //    filters.Userid = ClaimsPrincipalExtensions.GetUserId(User);
                 // aqui filters.Userid ponemos el userId del usuario del BCN que hubo insertado los bcNodes (admin@gmail, bcNode@gmail)
 
-                filters.Userid = _tokenPlusId != null ? _tokenPlusId.BcnUserId : Guid.Empty;
+                filters.Userid = tokenPlusId != null ? tokenPlusId.BcnUserId : Guid.Empty;
                 var data = new List<BcNodeDto>();
-                if (_tokenPlusId != null && _tokenPlusId.Token != "")
-                    data = await _bcNodeService.GetBcNodes(_tokenPlusId, filters);
+                if (tokenPlusId != null && tokenPlusId.Token != "")
+                    data = await _bcNodeService.GetBcNodes(tokenPlusId, filters);
                 if (data.Count() == 1 && data.ElementAt(0).Description == "unauthorized")
                 {
-                    _tokenPlusId = await GetToken();
-                    data = await _bcNodeService.GetBcNodes(_tokenPlusId, filters);
+                    tokenPlusId = await GetToken();
+                    data = await _bcNodeService.GetBcNodes(tokenPlusId, filters);
                 }
                 var total = data.Count();
                 result = Json(new
