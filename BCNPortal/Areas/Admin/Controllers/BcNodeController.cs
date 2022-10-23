@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using BCNPortal.Areas.Admin.Models.BcNode;
 using BCNPortal.DTO.BcNode;
 using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
@@ -151,6 +152,49 @@ namespace BCNPortal.Areas.Admin.Controllers
                 Console.Write(ex);
             }
             return result;
+        }
+        [HttpGet]
+        public IActionResult Add()
+        {
+            ViewBag.Title = NewTitle;
+            return View(nameof(Add), BuildBcNodeViewModel(null));
+        }
+        private CreateEditBcNodeViewModel BuildBcNodeViewModel(Guid? bcNodeId, int optionTab = 1)
+        {
+            var locations = _locationAdapter.ConvertListDto(_locationService.GetAllLocations());
+            var bcNodeList = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetAllBcNodes()).Select(x => new BaseDTO
+            {
+                Id = x.Id,
+                Name = x.Name
+            }).ToList();
+            bcNodeList.Insert(0, new BaseDTO
+            {
+                Id = Guid.Empty,
+                Name = "Do not apply"
+            });
+
+            if (bcNodeId == null)
+                return new CreateEditBcNodeViewModel
+                {
+                    Locations = locations,
+                    bcNodeList = bcNodeList
+                };
+            var bcnodeDto = _bcNodeAdapter.ConvertBcNodeToDTO(_bcNodeService.GeBcNode(bcNodeId));
+            return new CreateEditBcNodeViewModel
+            {
+                Name = bcnodeDto.Name,
+                Description = bcnodeDto.Description,
+                SelectedLocationId = bcnodeDto.PlaceId,
+                Locations = locations,
+                BcNodeId = bcnodeDto.Id.ToString(),
+                UserId = bcnodeDto.UserId,
+                SelectedBcNodeId = bcnodeDto.TopBcNode,
+                bcNodeList = bcNodeList,
+                Group = bcnodeDto.Group,
+                Latitude = bcnodeDto.Latitude,
+                Longitude = bcnodeDto.Longitude
+            };
+
         }
     }
 }

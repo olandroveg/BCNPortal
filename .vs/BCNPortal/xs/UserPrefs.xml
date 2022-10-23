@@ -2,12 +2,14 @@
   <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs">
     <Files>
-      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="57" Column="31" />
-      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="51" Column="1" />
-      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="122" Column="48" />
+      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="37" Column="30" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="50" Column="18" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="178" Column="18" />
       <File FileName="BCNPortal/Services/BcNodeRqst/IBcNodeService.cs" Line="12" Column="1" />
       <File FileName="BCNPortal/appsettings.json" Line="17" Column="2" />
       <File FileName="BCNPortal/Data/ApplicationDbContext.cs" Line="21" Column="1" />
+      <File FileName="BCNPortal/Services/Token/TokenEntityService.cs" Line="33" Column="10" />
+      <File FileName="BCNPortal/Models/TokenApi.cs" Line="8" Column="44" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,15 +19,20 @@
               <Node name="Areas" expanded="True">
                 <Node name="Admin" expanded="True">
                   <Node name="Controllers" expanded="True" />
+                  <Node name="Models" expanded="True">
+                    <Node name="BcNode" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
               <Node name="Data" expanded="True" />
               <Node name="DTO" expanded="True">
                 <Node name="BcNode" expanded="True" />
               </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
                 <Node name="ApiRequest" expanded="True" />
                 <Node name="BcNodeRqst" expanded="True" />
+                <Node name="Token" expanded="True" />
               </Node>
               <Node name="Utility" expanded="True" />
             </Node>
@@ -41,12 +48,6 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/BcNodeRqst/BcNodeService.cs" relfile="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" line="37" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/BcNodeRqst/BcNodeService.cs" relfile="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" line="43" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/BcNodeRqst/BcNodeService.cs" relfile="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" line="39" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/BcNodeRqst/BcNodeService.cs" relfile="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" line="51" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/BcNodeRqst/BcNodeService.cs" relfile="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" line="55" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
