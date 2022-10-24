@@ -6,6 +6,7 @@ using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcNodeRqst;
 using BCNPortal.Services.BcnUser;
+using BCNPortal.Services.Location;
 using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,14 +24,16 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IBcnUserService _bcnUserService;
         private readonly IBcNodeService _bcNodeService;
-        
-        
+        private readonly ILocationService _locationService;
+
+
 
         public BcNodeController
             (IBcnUserService bcnUserService,
             ITokenRequestService tokenService,
             UserManager<IdentityUser> userManager,
-            IBcNodeService bcNodeService)
+            IBcNodeService bcNodeService,
+            ILocationService locationService)
 
 
             {
@@ -38,6 +41,7 @@ namespace BCNPortal.Areas.Admin.Controllers
                 _bcnUserService = bcnUserService;
                 _userManager = userManager;
                  _bcNodeService = bcNodeService;
+                _locationService = locationService;
             }
        
         
@@ -159,14 +163,18 @@ namespace BCNPortal.Areas.Admin.Controllers
             ViewBag.Title = NewTitle;
             return View(nameof(Add), BuildBcNodeViewModel(null));
         }
-        private CreateEditBcNodeViewModel BuildBcNodeViewModel(Guid? bcNodeId, int optionTab = 1)
+        
+        
+        private async CreateEditBcNodeViewModel BuildBcNodeViewModel(Guid? bcNodeId, int optionTab = 1)
         {
-            var locations = _locationAdapter.ConvertListDto(_locationService.GetAllLocations());
-            var bcNodeList = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetAllBcNodes()).Select(x => new BaseDTO
-            {
-                Id = x.Id,
-                Name = x.Name
-            }).ToList();
+            var tokenPlusId = await GetToken();
+            var locations = await _locationService.GetLocations(tokenPlusId);
+            //var bcNodeList = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetAllBcNodes()).Select(x => new BaseDTO
+            //{
+            //    Id = x.Id,
+            //    Name = x.Name
+            //}).ToList();
+            var bcNodeList = 
             bcNodeList.Insert(0, new BaseDTO
             {
                 Id = Guid.Empty,
