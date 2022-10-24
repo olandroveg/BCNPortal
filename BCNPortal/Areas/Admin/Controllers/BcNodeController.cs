@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using BCNPortal.Areas.Admin.Models.BcNode;
+using BCNPortal.DTO;
 using BCNPortal.DTO.BcNode;
 using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
@@ -158,24 +159,37 @@ namespace BCNPortal.Areas.Admin.Controllers
             return result;
         }
         [HttpGet]
-        public IActionResult Add()
+        public async Task< IActionResult> Add()
         {
             ViewBag.Title = NewTitle;
             return View(nameof(Add), BuildBcNodeViewModel(null));
         }
         
         
-        private async CreateEditBcNodeViewModel BuildBcNodeViewModel(Guid? bcNodeId, int optionTab = 1)
+        private async Task< CreateEditBcNodeViewModel> BuildBcNodeViewModel(Guid? bcNodeId, int optionTab = 1)
         {
             var tokenPlusId = await GetToken();
-            var locations = await _locationService.GetLocations(tokenPlusId);
+            var locations = await _locationService.GetAllLocations(tokenPlusId);
             //var bcNodeList = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetAllBcNodes()).Select(x => new BaseDTO
             //{
             //    Id = x.Id,
             //    Name = x.Name
             //}).ToList();
-            var bcNodeList = 
-            bcNodeList.Insert(0, new BaseDTO
+            var bcNodeList = await _bcNodeService.GetAllBcNodes(tokenPlusId).ContinueWith(x => x.Result.Select(x => new BaseDTO
+            {
+                Id = x.Id,
+                Name = x.Name
+            }));
+	         
+	        
+            //var bcNodes = await _bcNodeService.GetAllBcNodes(tokenPlusId);
+            //var bcNodeList = bcNodes.Select(x => new BaseDTO
+            //{
+            //    Id = x.Id,
+            //    Name = x.Name
+            //}).ToList();
+
+            bcNodeList.ToList().Insert(0, new BaseDTO
             {
                 Id = Guid.Empty,
                 Name = "Do not apply"
@@ -187,21 +201,29 @@ namespace BCNPortal.Areas.Admin.Controllers
                     Locations = locations,
                     bcNodeList = bcNodeList
                 };
-            var bcnodeDto = _bcNodeAdapter.ConvertBcNodeToDTO(_bcNodeService.GeBcNode(bcNodeId));
-            return new CreateEditBcNodeViewModel
+            try
             {
-                Name = bcnodeDto.Name,
-                Description = bcnodeDto.Description,
-                SelectedLocationId = bcnodeDto.PlaceId,
-                Locations = locations,
-                BcNodeId = bcnodeDto.Id.ToString(),
-                UserId = bcnodeDto.UserId,
-                SelectedBcNodeId = bcnodeDto.TopBcNode,
-                bcNodeList = bcNodeList,
-                Group = bcnodeDto.Group,
-                Latitude = bcnodeDto.Latitude,
-                Longitude = bcnodeDto.Longitude
-            };
+                var bcnodeDto = await _bcNodeService.GetBcNode(tokenPlusId, bcNodeId ?? Guid.Empty);
+                return new CreateEditBcNodeViewModel
+                {
+                    Name = bcnodeDto.Name,
+                    Description = bcnodeDto.Description,
+                    SelectedLocationId = bcnodeDto.PlaceId,
+                    Locations = locations,
+                    BcNodeId = bcnodeDto.Id.ToString(),
+                    UserId = bcnodeDto.UserId,
+                    SelectedBcNodeId = bcnodeDto.TopBcNode,
+                    bcNodeList = bcNodeList,
+                    Group = bcnodeDto.Group,
+                    Latitude = bcnodeDto.Latitude,
+                    Longitude = bcnodeDto.Longitude
+                };
+            }
+            catch (Exception e){
+                throw new ArgumentNullException(e.Message);
+            }
+
+            
 
         }
     }
