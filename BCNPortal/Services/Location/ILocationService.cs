@@ -10,5 +10,8 @@ namespace BCNPortal.Services.Location
         Task<List<LocationDto>> GetLocations(TokenPlusId tokenPlusId, BaseFilter baseFilter);
         Task<List<LocationListDto>> GetAllLocations(TokenPlusId tokenPlusId);
         Task<LocationDto> GetSingleLocation(TokenPlusId tokenPlusId, Guid locationId);
+        Task<Guid> SendLocationDto(TokenPlusId tokenPlusId, LocationDto locationDto);
+        Task<bool> DeleteRange(TokenPlusId tokenPlusId, IEnumerable<Guid> locationIds);
+        
     }
 }

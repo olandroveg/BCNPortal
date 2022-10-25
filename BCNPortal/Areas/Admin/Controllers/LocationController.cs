@@ -2,6 +2,7 @@
 using System.Text.Json;
 using BCNPortal.Areas.Admin.Models.Location;
 using BCNPortal.DTO.Filter;
+using BCNPortal.DTO.Location;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BCNPortal.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class LocationController: Controller
     {
         private readonly ILocationService _locationService;
@@ -31,6 +33,8 @@ namespace BCNPortal.Areas.Admin.Controllers
             _tokenService = tokenService;
             _bcnUserService = bcnUserService;
         }
+        [HttpGet]
+        public IActionResult Index() => View(nameof(Index));
         private async Task<TokenPlusId> GetToken()
         {
             // get username of the logged user
@@ -100,7 +104,16 @@ namespace BCNPortal.Areas.Admin.Controllers
 
                 };
             var tokenPlusId = await GetToken();
-            var locationDto = _locationService.GetLocations(tokenPlusId, locationId ?? Guid.Empty));
+            var locationDto = new LocationDto();
+            try
+            {
+                locationDto = await _locationService.GetSingleLocation(tokenPlusId, locationId ?? Guid.Empty);
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
+             
 
             var model = new CreateEditLocationViewModel
             {
@@ -113,6 +126,66 @@ namespace BCNPortal.Areas.Admin.Controllers
 
             };
             return model;
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(CreateEditLocationViewModel model)
+        {
+            var tokenPlusId = await GetToken();
+            var locationId = Guid.Empty;
+            try
+            {
+                locationId = await _locationService.SendLocationDto(tokenPlusId, model.ModelToDto());
+            }
+            catch(Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
+            if (locationId == Guid.Empty)
+                TempData["SuccLocationCreated"] = false;
+            TempData["SuccLocationCreated"] = true;
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteRange(IEnumerable<Guid> locations)
+        {
+            var tokenPlusId = await GetToken();
+            try
+            {
+                var response = await _locationService.DeleteRange(tokenPlusId, locations);
+                return Json(new { action = "success", title = "Info", message = "Selected locations has been deleted" });
+            }
+            catch (ArgumentException)
+            {
+                return Json(new { action = "error", title = "Not completed", message = "Some locations could not be deleted, not found " });
+            }
+        }
+        [HttpGet]
+        public IActionResult Edit(Guid locationId, int optionTab = 1)
+        {
+            if (locationId.Equals(Guid.Empty))
+                return RedirectToAction(nameof(Index));
+            ViewBag.Title = EditTitle;
+            return View(nameof(Edit), BuildLocationViewModel(locationId, optionTab));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(CreateEditLocationViewModel model)
+        {
+            var tokenPlusId = await GetToken();
+            var locationId = Guid.Empty;
+            try
+            {
+                locationId = await _locationService.SendLocationDto(tokenPlusId, model.ModelToDto());
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e);
+            }
+            if (locationId == Guid.Empty)
+                TempData["SucclocationUpdated"] = false;
+            TempData["SucclocationUpdated"] = true;
+            return RedirectToAction(nameof(Index));
         }
     }
 }

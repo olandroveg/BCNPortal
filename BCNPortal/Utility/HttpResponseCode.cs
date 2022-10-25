@@ -14,6 +14,8 @@
                     return "Forbidden";
                 case System.Net.HttpStatusCode.Unauthorized:
                     return "Unauthorized";
+                    default:
+                    return "error";
 
             }
                
