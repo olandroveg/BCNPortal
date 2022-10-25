@@ -20,7 +20,7 @@ namespace BCNPortal.Services.Location
         private readonly string _getSingleLocation;
         private readonly string _sendLocation;
         private readonly string _deleteRange;
-        private readonly string _editLocation;
+        
         private readonly ITokenRequestService _tokenRequestService;
         public LocationService(ITokenRequestService tokenRequestService)
         {
@@ -30,7 +30,7 @@ namespace BCNPortal.Services.Location
             _getSingleLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getSingleLocation"];
             _sendLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_sendLocation"];
             _deleteRange = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRange"];
-            _editLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_editLocation"];
+            
 
             _tokenRequestService = tokenRequestService;
         }
