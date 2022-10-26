@@ -6,5 +6,6 @@ namespace BCNPortal.Services.Content
     public interface IContentService
     {
         Task<List<ContentTableDto>> GetAllContents(TokenPlusId tokenPlusId);
+        Task<List<ServiceDto>> GetAllServices(TokenPlusId tokenPlusId)
     }
 }

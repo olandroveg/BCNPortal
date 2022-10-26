@@ -1,4 +1,6 @@
-﻿using BCNPortal.DTO.Filter;
+﻿using BCNPortal.Areas.Admin.Models.Content;
+using BCNPortal.Dto.Service;
+using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
@@ -12,10 +14,15 @@ namespace BCNPortal.Areas.Admin.Controllers
     [Area("Admin")]
     public class ContentController : Controller
     {
+        private const string EditTitle = "Edit content";
+        private const string NewTitle = "New content";
+
         private readonly IContentService _contentService;
         private readonly ITokenRequestService _tokenService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IBcnUserService _bcnUserService;
+
+
         public ContentController(IBcnUserService bcnUserService,
             ITokenRequestService tokenService,
             UserManager<IdentityUser> userManager, IContentService contentService)
@@ -83,5 +90,27 @@ namespace BCNPortal.Areas.Admin.Controllers
             }
             return result;
         }
+
+        public async Task <CreateEditContentViewModel> BuildContentViewModel(Guid? Id, int optionTab = 1)
+        {
+            var tokenPlusId = await GetToken();
+            var services = await _contentService.GetAllServices(tokenPlusId);
+            if (Id == Guid.Empty || Id == null)
+            {
+                return new CreateEditContentViewModel
+                {
+                    Services = (IEnumerable<ServiceDto>)services
+                };
+            }
+            var contentDto = _contentAdapter.ConvertContentToDto(_contentService.GetContentById(Id));
+            return _contentAdapter.ConvertDtoToViewModel(contentDto);
+        }
+        [HttpGet]
+        public async Task< IActionResult> Add()
+        {
+            ViewBag.Title = NewTitle;
+            return View(nameof(Add),await BuildContentViewModel(null));
+        }
+
     }
 }
