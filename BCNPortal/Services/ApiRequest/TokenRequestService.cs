@@ -27,7 +27,7 @@ namespace BCNPortal.Services.ApiRequest
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(dataObj), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync(_aafAddress + _tokenApi, content))
+                    using ( var response = await httpClient.PostAsync(_aafAddress + _tokenApi, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)

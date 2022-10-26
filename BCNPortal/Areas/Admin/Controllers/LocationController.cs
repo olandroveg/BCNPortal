@@ -72,7 +72,6 @@ namespace BCNPortal.Areas.Admin.Controllers
                 var filters = new BaseFilter();
                 filters.Page = startRec / pageSize;
                 filters.PageSize = pageSize;
-                filters.Userid = tokenPlusId.BcnUserId;
                 //var data = _locationAdapter.ConvertLocationsToDTOs(_locationService.GetLocations(filters));
                 var data = await _locationService.GetLocations(tokenPlusId, filters);
                 var total = data.Count();
@@ -94,7 +93,7 @@ namespace BCNPortal.Areas.Admin.Controllers
         public async Task< IActionResult> Add()
         {
             ViewBag.Title = NewTitle;
-            return View(nameof(Add), await BuildLocationViewModel(null));
+            return View(nameof(Add),await BuildLocationViewModel(null));
         }
         private async Task < CreateEditLocationViewModel> BuildLocationViewModel(Guid? locationId, int optionTab = 1)
         {
@@ -162,7 +161,7 @@ namespace BCNPortal.Areas.Admin.Controllers
             }
         }
         [HttpGet]
-        public async Task <IActionResult> Edit(Guid locationId, int optionTab = 1)
+        public async Task< IActionResult> Edit(Guid locationId, int optionTab = 1)
         {
             if (locationId.Equals(Guid.Empty))
                 return RedirectToAction(nameof(Index));
