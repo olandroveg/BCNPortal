@@ -90,10 +90,10 @@ namespace BCNPortal.Areas.Admin.Controllers
             return result;
         }
         [HttpGet]
-        public IActionResult Add()
+        public async Task< IActionResult> Add()
         {
             ViewBag.Title = NewTitle;
-            return View(nameof(Add), BuildLocationViewModel(null));
+            return View(nameof(Add),await BuildLocationViewModel(null));
         }
         private async Task < CreateEditLocationViewModel> BuildLocationViewModel(Guid? locationId, int optionTab = 1)
         {
@@ -161,12 +161,12 @@ namespace BCNPortal.Areas.Admin.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Edit(Guid locationId, int optionTab = 1)
+        public async Task< IActionResult> Edit(Guid locationId, int optionTab = 1)
         {
             if (locationId.Equals(Guid.Empty))
                 return RedirectToAction(nameof(Index));
             ViewBag.Title = EditTitle;
-            return View(nameof(Edit), BuildLocationViewModel(locationId, optionTab));
+            return View(nameof(Edit), await BuildLocationViewModel(locationId, optionTab));
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

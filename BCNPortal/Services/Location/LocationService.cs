@@ -36,7 +36,7 @@ namespace BCNPortal.Services.Location
         }
         public async Task<List<LocationDto>> GetLocations(TokenPlusId tokenPlusId, BaseFilter baseFilter)
         {
-            var locationDto = new List<LocationDto>();
+            
             try
             {
                 using (var httpClient = new HttpClient())
@@ -48,14 +48,15 @@ namespace BCNPortal.Services.Location
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            locationDto = JsonConvert.DeserializeObject<List<LocationDto>>(apiResponse);
+                            var locationDto = JsonConvert.DeserializeObject<List<LocationDto>>(apiResponse);
+                            return locationDto;
                         }
                        
                         throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));
                     }
 
                 }
-                return locationDto;
+                
             }
             catch (Exception e)
             {
