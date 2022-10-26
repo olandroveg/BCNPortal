@@ -39,13 +39,14 @@ namespace BCNPortal.Services.BcNodeRqst
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             bcNodesDto = JsonConvert.DeserializeObject<List<BcNodeDto>>(apiResponse);
+                            return bcNodesDto;
                         }
                         
                         throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));
                     }
                     
                 }
-                return bcNodesDto;
+                
             }
             catch (Exception e)
             {
