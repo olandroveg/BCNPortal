@@ -15,7 +15,7 @@ namespace BCNPortal.Services.Token
         {
             if (string.IsNullOrEmpty(token.Value))
                 throw new ArgumentNullException("fields cannot be null");
-            var formerToken = _context.Token.AsEnumerable().FirstOrDefault();
+            var formerToken = _context.Token.FirstOrDefault(x=> x.PortalUserId == token.PortalUserId);
             if (formerToken != null && formerToken.Id != Guid.Empty)
             {
                 formerToken.Value = token.Value;
@@ -35,17 +35,25 @@ namespace BCNPortal.Services.Token
                 throw new ArgumentNullException("token does not exist");
             _context.Token.Remove(token);
         }
-        public bool TokenAvailability()
+        public bool TokenAvailability(Guid userId)
         {
             // set token renewal as 30 min interval.
-            var formerToken = _context.Token.AsEnumerable().FirstOrDefault();
+            var formerToken = _context.Token.FirstOrDefault(x=> x.PortalUserId == userId);
             if (formerToken != null && formerToken.Id != Guid.Empty && (((DateTime.Now - formerToken.DateTime).TotalMinutes)< 30))
                 return true;
             return false;
         }
-        public string GetToken()
+        public TokenPlusId GetToken(Guid userId)
         {
-            return _context.Token.Count() > 0 ? _context.Token.AsEnumerable().FirstOrDefault().Value : string.Empty;
+            var token = _context.Token.Where(x => x.PortalUserId == userId).Count() > 0 ? _context.Token.FirstOrDefault(x=> x.PortalUserId == userId) : null;
+            if (token != null)
+                return new TokenPlusId
+                {
+                    Token = token.Value,
+                    BcnUserId = token.BcnUserId
+
+                };
+            return null;
         }
 
     }

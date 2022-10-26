@@ -18,7 +18,7 @@ namespace BCNPortal.Services.ApiRequest
             _tokenApi = StaticConfigurationManager.AppSetting["ApiAddress:AAF_getToken"];
             _tokenEntityService = tokenEntityService;
         }
-        private async Task <TokenApi> RequestToken(string username, string password)
+        private async Task <TokenApi> RequestToken(string username, string password, Guid userId)
         {
             var tokenApi = new TokenApi();
             try
@@ -27,7 +27,7 @@ namespace BCNPortal.Services.ApiRequest
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(dataObj), Encoding.UTF8, "application/json");
-                    using (var response = await httpClient.PostAsync(_aafAddress + _tokenApi, content))
+                    using ( var response = await httpClient.PostAsync(_aafAddress + _tokenApi, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -39,7 +39,9 @@ namespace BCNPortal.Services.ApiRequest
                                 {
                                     Id = Guid.Empty,
                                     Value = tokenApi.token,
-                                    DateTime = DateTime.Now
+                                    DateTime = DateTime.Now,
+                                    BcnUserId = tokenApi.bcnUserId,
+                                    PortalUserId = userId
                                 };
                                 await _tokenEntityService.AddOrUpdate(token);
                                 return tokenApi;
@@ -58,16 +60,21 @@ namespace BCNPortal.Services.ApiRequest
                 return tokenApi;
             }
         }
-        public async Task<string> ManageToken(string username, string password)
+        public async Task<TokenPlusId> ManageToken(string username, string password, Guid userId)
         {
-            string token = string.Empty;
-            if (_tokenEntityService.TokenAvailability())
-                token = _tokenEntityService.GetToken();
+
+            TokenPlusId token = new TokenPlusId();
+            if (_tokenEntityService.TokenAvailability(userId))
+                token = _tokenEntityService.GetToken(userId);
             else
             {
-                var tokenApi = await RequestToken(username, password);
+                var tokenApi = await RequestToken(username, password, userId);
                 if (tokenApi.status == "Success")
-                    token = tokenApi.token;
+                {
+                    token.Token = tokenApi.token;
+                    token.BcnUserId = token.BcnUserId;
+                }
+                    
             }
             return token;
              

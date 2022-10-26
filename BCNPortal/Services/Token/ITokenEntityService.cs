@@ -1,10 +1,12 @@
-﻿namespace BCNPortal.Services.Token
+﻿using BCNPortal.Models;
+
+namespace BCNPortal.Services.Token
 {
     public interface ITokenEntityService
     {
         public Task<BCNPortal.Models.Token> AddOrUpdate(BCNPortal.Models.Token token);
         public void Delete(BCNPortal.Models.Token token);
-        public bool TokenAvailability();
-        public string GetToken();
+        public bool TokenAvailability(Guid userId);
+        public TokenPlusId GetToken(Guid userId);
     }
 }

@@ -1,11 +1,25 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/_ViewImports.cshtml">
+  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/appsettings.json">
     <Files>
-      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="44" Column="78" />
-      <File FileName="BCNPortal/appsettings.json" Line="11" Column="2" />
-      <File FileName="BCNPortal/Areas/Admin/_ViewImports.cshtml" Line="9" Column="53" />
+      <File FileName="BCNPortal/Services/Location/LocationService.cs" Line="89" Column="57" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/LocationController.cs" Line="98" Column="55" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="111" Column="14" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="171" Column="13" />
+      <File FileName="BCNPortal/Areas/Admin/Models/BcNode/CreateEditBcNodeViewModel.cs" Line="11" Column="18" />
+      <File FileName="BCNPortal/DTO/Location/LocationListDto.cs" Line="4" Column="18" />
+      <File FileName="BCNPortal/Services/ApiRequest/TokenRequestService.cs" Line="37" Column="30" />
+      <File FileName="BCNPortal/appsettings.json" Line="14" Column="45" />
+      <File FileName="BCNPortal/Data/ApplicationDbContext.cs" Line="21" Column="1" />
+      <File FileName="BCNPortal/Services/Token/TokenEntityService.cs" Line="33" Column="10" />
+      <File FileName="BCNPortal/Models/TokenApi.cs" Line="8" Column="44" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/IBcNodeService.cs" Line="11" Column="75" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,11 +27,27 @@
           <Node name="BCNPortal" expanded="True">
             <Node name="BCNPortal" expanded="True">
               <Node name="Areas" expanded="True">
-                <Node name="Admin" expanded="True" />
+                <Node name="Admin" expanded="True">
+                  <Node name="Controllers" expanded="True" />
+                  <Node name="Models" expanded="True">
+                    <Node name="BcNode" expanded="True" />
+                  </Node>
+                </Node>
               </Node>
+              <Node name="Data" expanded="True" />
+              <Node name="DTO" expanded="True">
+                <Node name="BcNode" expanded="True" />
+                <Node name="Location" expanded="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
                 <Node name="ApiRequest" expanded="True" />
+                <Node name="BcNodeRqst" expanded="True" />
+                <Node name="Location" expanded="True" />
+                <Node name="Token" expanded="True" />
               </Node>
+              <Node name="Utility" expanded="True" />
+              <Node name="appsettings.json" selected="True" />
             </Node>
           </Node>
         </State>
@@ -27,9 +57,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
