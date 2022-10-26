@@ -12,8 +12,8 @@ namespace BCNPortal.Services.Location
 {
     public class LocationService : ILocationService
     {
-        private readonly ITokenRequestService _tokenService;
-        private readonly UserManager<IdentityUser> _userManager;
+        
+        
         private readonly string _udrfAddress;
         private readonly string _getAllLocation;
         private readonly string _getLocation;

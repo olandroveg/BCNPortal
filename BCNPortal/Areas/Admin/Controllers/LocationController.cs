@@ -72,6 +72,7 @@ namespace BCNPortal.Areas.Admin.Controllers
                 var filters = new BaseFilter();
                 filters.Page = startRec / pageSize;
                 filters.PageSize = pageSize;
+                filters.Userid = tokenPlusId.BcnUserId;
                 //var data = _locationAdapter.ConvertLocationsToDTOs(_locationService.GetLocations(filters));
                 var data = await _locationService.GetLocations(tokenPlusId, filters);
                 var total = data.Count();
