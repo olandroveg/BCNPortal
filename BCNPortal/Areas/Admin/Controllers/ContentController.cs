@@ -1,4 +1,5 @@
 ﻿using BCNPortal.Areas.Admin.Models.Content;
+using BCNPortal.Dto.Content;
 using BCNPortal.Dto.Service;
 using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
@@ -102,14 +103,92 @@ namespace BCNPortal.Areas.Admin.Controllers
                     Services = (IEnumerable<ServiceDto>)services
                 };
             }
-            var contentDto = _contentAdapter.ConvertContentToDto(_contentService.GetContentById(Id));
-            return _contentAdapter.ConvertDtoToViewModel(contentDto);
+            var contentDto = new ContentDto();
+            try 
+            {
+                contentDto = await _contentService.GetSingleContent(tokenPlusId, Id ?? Guid.Empty);
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex);
+            }
+             
+            return new CreateEditContentViewModel
+            {
+                Id = contentDto.Id.ToString(),
+                SelectedServiceId = contentDto.ServicesId,
+                Services = contentDto.services,
+                SourceLocation = contentDto.SourceLocation,
+                Name = contentDto.Name
+            };
         }
         [HttpGet]
         public async Task< IActionResult> Add()
         {
             ViewBag.Title = NewTitle;
             return View(nameof(Add),await BuildContentViewModel(null));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(CreateEditContentViewModel model)
+        {
+            var tokenPlusId = await GetToken();
+            var contentId = Guid.Empty;
+            try 
+            {
+                contentId = await _contentService.SendContentDto(tokenPlusId, model.ConvertToDto());
+            }
+            catch(Exception ex)
+            {
+                Console.Error.WriteLine(ex);
+            }
+            
+            TempData["SuccContentCreated"] = true;
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task<IActionResult> DeleteRange(IEnumerable<Guid> contentIds)
+        {
+            var tokenPlusId = await GetToken();
+            try
+            {
+                await _contentService.DeleteRange(tokenPlusId,contentIds);
+                return Json(new { action = "success", title = "Info", message = "Selected contents has been deleted" });
+            }
+            catch (ArgumentException)
+            {
+                return Json(new { action = "error", title = "Not completed", message = "Some contents could not be deleted, not found " });
+            }
+        }
+        [HttpGet]
+        public async Task< IActionResult> Edit(Guid contentId, int optionTab = 1)
+        {
+            if (contentId.Equals(Guid.Empty))
+                return RedirectToAction(nameof(Index));
+            ViewBag.Title = EditTitle;
+            return View(nameof(Edit),await BuildContentViewModel(contentId, optionTab));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(CreateEditContentViewModel model)
+        {
+            var tokenPlusId = await GetToken();
+            var contentId = Guid.Empty;
+            try
+            {
+                contentId = await _contentService.SendContentDto(tokenPlusId, model.ConvertToDto());
+            }
+            catch (Exception ex)
+            {
+                TempData["SuccContentUpdated"] = false;
+                Console.Error.WriteLine(ex);
+            }
+            if (contentId == Guid.Empty)
+                TempData["SuccContentUpdated"] = false;
+
+             
+            TempData["SuccContentUpdated"] = true;
+            return RedirectToAction(nameof(Index));
         }
 
     }

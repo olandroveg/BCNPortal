@@ -49,7 +49,6 @@ namespace BCNPortal.Areas.Admin.Controllers
         [HttpGet]
         public  IActionResult Index()
         {
-            //var userId = ClaimsPrincipalExtensions.GetUserId(User);
             
             return View(nameof(Index));
         }
@@ -73,42 +72,7 @@ namespace BCNPortal.Areas.Admin.Controllers
                 token = await _tokenService.ManageToken(bcnUsername, bcnPassword, userId);
             return token;
         }
-        //[HttpPost]
-        //public IActionResult LoadBcNodes()
-        //{
-        //    JsonResult result = null;
-
-        //    try
-        //    {
-        //        var search = Request.Form["search[value]"][0];
-        //        var draw = Request.Form["draw"][0];
-        //        var orderDir = Request.Form["order[0][dir]"];
-        //        var order = int.Parse(Request.Form["order[0][column]"][0]);
-        //        var startRec = Convert.ToInt32(Request.Form["start"][0]);
-        //        var pageSize = Convert.ToInt32(Request.Form["length"][0]);
-        //        var filters = new BaseFilter();
-        //        filters.Page = startRec / pageSize;
-        //        filters.PageSize = pageSize;
-        //        if (ClaimsPrincipalExtensions.HasRoleAdmin(User))
-        //            filters.IsAdmin = true;
-        //        else
-        //            filters.Userid = ClaimsPrincipalExtensions.GetUserId(User);
-        //        var data = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetBcNodes(filters));
-        //        var total = data.Count();
-        //        result = Json(new
-        //        {
-        //            draw = Convert.ToInt32(draw),
-        //            recordsTotal = total,
-        //            recordsFiltered = total,
-        //            data
-        //        }, new JsonSerializerOptions());
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.Write(ex);
-        //    }
-        //    return result;
-        //}
+        
 
 
         [HttpPost]
@@ -116,8 +80,7 @@ namespace BCNPortal.Areas.Admin.Controllers
         {
             JsonResult result = null;
 
-            try
-            {
+            
                 var tokenPlusId = await GetToken();
                 var search = Request.Form["search[value]"][0];
                 var draw = Request.Form["draw"][0];
@@ -135,14 +98,18 @@ namespace BCNPortal.Areas.Admin.Controllers
                 // aqui filters.Userid ponemos el userId del usuario del BCN que hubo insertado los bcNodes (admin@gmail, bcNode@gmail)
 
                 filters.Userid = tokenPlusId != null ? tokenPlusId.BcnUserId : Guid.Empty;
+                if (tokenPlusId == null || tokenPlusId.Token == "")
+                    throw new ArgumentNullException();
                 var data = new List<BcNodeDto>();
-                if (tokenPlusId != null && tokenPlusId.Token != "")
-                    data = await _bcNodeService.GetBcNodes(tokenPlusId, filters);
-                if (data.Count() == 1 && data.ElementAt(0).Description == "unauthorized")
+                try 
                 {
-                    tokenPlusId = await GetToken();
                     data = await _bcNodeService.GetBcNodes(tokenPlusId, filters);
                 }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine(ex);
+                }
+                
                 var total = data.Count();
                 result = Json(new
                 {
@@ -151,18 +118,13 @@ namespace BCNPortal.Areas.Admin.Controllers
                     recordsFiltered = total,
                     data
                 }, new JsonSerializerOptions());
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex);
-            }
-            return result;
+                return result;
         }
         [HttpGet]
         public async Task< IActionResult> Add()
         {
             ViewBag.Title = NewTitle;
-            return View(nameof(Add), BuildBcNodeViewModel(null));
+            return View(nameof(Add), await BuildBcNodeViewModel(null));
         }
         
         
@@ -170,31 +132,24 @@ namespace BCNPortal.Areas.Admin.Controllers
         {
             var tokenPlusId = await GetToken();
             var locations = await _locationService.GetAllLocations(tokenPlusId);
-            //var bcNodeList = _bcNodeAdapter.ConvertBcNodesToDTOs(_bcNodeService.GetAllBcNodes()).Select(x => new BaseDTO
-            //{
-            //    Id = x.Id,
-            //    Name = x.Name
-            //}).ToList();
-            var bcNodeList = await _bcNodeService.GetAllBcNodes(tokenPlusId).ContinueWith(x => x.Result.Select(x => new BaseDTO
+            
+            var bcNodeEnum = await _bcNodeService.GetAllBcNodes(tokenPlusId).ContinueWith(x => x.Result.Select(x => new BaseDTO
             {
                 Id = x.Id,
                 Name = x.Name
             }));
-	         
-	        
             //var bcNodes = await _bcNodeService.GetAllBcNodes(tokenPlusId);
             //var bcNodeList = bcNodes.Select(x => new BaseDTO
             //{
             //    Id = x.Id,
             //    Name = x.Name
             //}).ToList();
-
-            bcNodeList.ToList().Insert(0, new BaseDTO
+            var bcNodeList = bcNodeEnum.ToList();
+            bcNodeList.Insert(0, new BaseDTO
             {
                 Id = Guid.Empty,
                 Name = "Do not apply"
             });
-
             if (bcNodeId == null)
                 return new CreateEditBcNodeViewModel
                 {
@@ -222,8 +177,6 @@ namespace BCNPortal.Areas.Admin.Controllers
             catch (Exception e){
                 throw new ArgumentNullException(e.Message);
             }
-
-            
 
         }
     }

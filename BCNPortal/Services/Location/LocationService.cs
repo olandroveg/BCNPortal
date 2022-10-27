@@ -29,7 +29,7 @@ namespace BCNPortal.Services.Location
             _getLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getLocations"];
             _getSingleLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getSingleLocation"];
             _sendLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_sendLocation"];
-            _deleteRange = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRange"];
+            _deleteRange = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRangeLocations"];
             
 
             _tokenRequestService = tokenRequestService;
