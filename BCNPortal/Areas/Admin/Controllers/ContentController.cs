@@ -190,6 +190,7 @@ namespace BCNPortal.Areas.Admin.Controllers
             TempData["SuccContentUpdated"] = true;
             return RedirectToAction(nameof(Index));
         }
+        
 
     }
 }

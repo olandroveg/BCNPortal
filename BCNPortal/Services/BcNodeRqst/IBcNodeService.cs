@@ -9,5 +9,6 @@ namespace BCNPortal.Services.BcNodeRqst
         Task<List<BcNodeDto>> GetBcNodes(TokenPlusId tokenPlusId, BaseFilter baseFilter);
         Task<List<BcNodeDto>> GetAllBcNodes(TokenPlusId tokenPlusId);
         Task<BcNodeDto> GetBcNode(TokenPlusId tokenPlusId, Guid bcNodeId);
+        Task<Guid> SendContentDto(TokenPlusId tokenPlusId, BcNodeDto bcNodeDto);
     }
 }

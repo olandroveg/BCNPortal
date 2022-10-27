@@ -5,6 +5,7 @@ using BCNPortal.DTO.BcNode;
 using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.BcNodeContent;
 using BCNPortal.Services.BcNodeRqst;
 using BCNPortal.Services.BcnUser;
 using BCNPortal.Services.Location;
@@ -26,6 +27,7 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly IBcnUserService _bcnUserService;
         private readonly IBcNodeService _bcNodeService;
         private readonly ILocationService _locationService;
+        private readonly IBcNodeContentService _bcNodeContentService;
 
 
 
@@ -34,7 +36,8 @@ namespace BCNPortal.Areas.Admin.Controllers
             ITokenRequestService tokenService,
             UserManager<IdentityUser> userManager,
             IBcNodeService bcNodeService,
-            ILocationService locationService)
+            ILocationService locationService,
+            IBcNodeContentService bcNodeContentService)
 
 
             {
@@ -43,6 +46,7 @@ namespace BCNPortal.Areas.Admin.Controllers
                 _userManager = userManager;
                  _bcNodeService = bcNodeService;
                 _locationService = locationService;
+                _bcNodeContentService = bcNodeContentService;
             }
        
         
@@ -154,7 +158,9 @@ namespace BCNPortal.Areas.Admin.Controllers
                 return new CreateEditBcNodeViewModel
                 {
                     Locations = locations,
-                    bcNodeList = bcNodeList
+                    bcNodeList = bcNodeList,
+                    Latitude = " ",
+                    Longitude = " "
                 };
             try
             {
@@ -178,6 +184,85 @@ namespace BCNPortal.Areas.Admin.Controllers
                 throw new ArgumentNullException(e.Message);
             }
 
+        }
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add(CreateEditBcNodeViewModel model, bool continueEditing)
+        {
+            var tokenPlusId = await GetToken();
+            model.UserId = tokenPlusId.BcnUserId;
+            var locationId = Guid.Empty;
+            try
+            {
+                locationId = await _bcNodeService.SendContentDto(tokenPlusId,model.ModelToDto());
+            }
+            catch (Exception ex)
+            {
+                TempData["SuccbcNodeCreated"] = false;
+                Console.Error.WriteLine(ex);
+            }
+            TempData["SuccbcNodeCreated"] = true;
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpGet]
+        public async Task< IActionResult> Edit(Guid bcnodeId, int optionTab = 1)
+        {
+            if (bcnodeId.Equals(Guid.Empty))
+                return RedirectToAction(nameof(Index));
+            ViewBag.Title = EditTitle;
+            return View(nameof(Edit), await BuildBcNodeViewModel(bcnodeId, optionTab));
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(CreateEditBcNodeViewModel model)
+        {
+            var tokenPlusId = await GetToken();
+            var bcnodeId = Guid.Empty;
+            try
+            {
+                bcnodeId = await _bcNodeService.SendContentDto(tokenPlusId, model.ModelToDto());
+                TempData["SuccbcNodeUpdated"] = true;
+            }
+            catch (Exception ex)
+            {
+                TempData["SuccbcNodeUpdated"] = false;
+                Console.Error.WriteLine(ex);
+                //return BadRequest(ex.Message);
+            }
+            return RedirectToAction(nameof(Index));
+        }
+        [HttpPost]
+        public async Task< IActionResult> LoadBcNodeContents(Guid bcNodeId)
+        {
+            JsonResult result = null;
+            try
+            {
+                var tokenPlusId = await GetToken();
+                var search = Request.Form["search[value]"][0];
+                var draw = Request.Form["draw"][0];
+                var orderDir = Request.Form["order[0][dir]"];
+                var order = int.Parse(Request.Form["order[0][column]"][0]);
+                var startRec = Convert.ToInt32(Request.Form["start"][0]);
+                var pageSize = Convert.ToInt32(Request.Form["length"][0]);
+                var filters = new BaseFilter();
+                filters.Page = startRec / pageSize;
+                filters.PageSize = pageSize;
+                filters.RefenceId = bcNodeId;
+                var data = _bcNodeContentService.GetBcNodeContents(filters));
+                var total = data.Count();
+                result = Json(new
+                {
+                    draw = Convert.ToInt32(draw),
+                    recordsTotal = total,
+                    recordsFiltered = total,
+                    data
+                }, new JsonSerializerOptions());
+            }
+            catch (Exception e)
+            {
+                Console.Write(e);
+            }
+            return result;
         }
     }
 }

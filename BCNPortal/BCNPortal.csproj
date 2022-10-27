@@ -22,9 +22,11 @@
   <ItemGroup>
     <None Remove="Microsoft.VisualStudio.Web.CodeGeneration.Design" />
     <None Remove="Areas\Admin\" />
+    <None Remove="Services\BcNodeContent\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
+    <Folder Include="Services\BcNodeContent\" />
   </ItemGroup>
 </Project>

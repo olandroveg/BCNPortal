@@ -1,4 +1,5 @@
 ﻿using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.BcNodeContent;
 using BCNPortal.Services.BcNodeRqst;
 using BCNPortal.Services.BcnUser;
 using BCNPortal.Services.Content;
@@ -17,6 +18,7 @@ namespace BCNPortal.Utility
             services.AddTransient<IBcNodeService, BcNodeService>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IContentService, ContentService>();
+            services.AddTransient<IBcNodeContentService, IBcNodeContentService>();
 
         }
     }

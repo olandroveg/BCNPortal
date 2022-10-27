@@ -14,6 +14,7 @@ namespace BCNPortal.Services.BcNodeRqst
         private readonly string _getBcNodes;
         private readonly string _getAllBcNodes;
         private readonly string _getSingleBcNode;
+        private readonly string _sendBcNode;
         private readonly ITokenRequestService _tokenRequestService;
 
         public BcNodeService(ITokenRequestService tokenRequestService)
@@ -22,6 +23,7 @@ namespace BCNPortal.Services.BcNodeRqst
             _getBcNodes = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getBcNodes"];
             _getAllBcNodes = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getAllBcNodes"];
             _getSingleBcNode = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getSingleBcNode"];
+            _sendBcNode = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_sendBcNode"];
             _tokenRequestService = tokenRequestService;
         }
 
@@ -108,6 +110,35 @@ namespace BCNPortal.Services.BcNodeRqst
 
                 }
                 
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<Guid> SendContentDto(TokenPlusId tokenPlusId, BcNodeDto bcNodeDto)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(bcNodeDto), Encoding.UTF8, "application/json");
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
+                    using (var response = await httpClient.PostAsync(_udrfAddress + _sendBcNode, content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            var contentId = JsonConvert.DeserializeObject<Guid>(apiResponse);
+                            return contentId;
+                        }
+
+                        throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));
+                    }
+
+                }
+
             }
             catch (Exception e)
             {
