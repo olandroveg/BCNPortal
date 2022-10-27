@@ -1,16 +1,10 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/Controllers/ContentController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs">
     <Files>
-      <File FileName="BCNPortal/Areas/Admin/Controllers/ContentController.cs" Line="100" Column="54" />
-      <File FileName="BCNPortal/Areas/Admin/Controllers/LocationController.cs" Line="106" Column="19" />
-      <File FileName="BCNPortal/appsettings.json" Line="18" Column="56" />
-      <File FileName="BCNPortal/Services/Content/ContentService.cs" Line="58" Column="10" />
+      <File FileName="BCNPortal/Services/BcNodeContent/IBcNodeContentService.cs" Line="10" Column="57" />
+      <File FileName="BCNPortal/Services/BcNodeContent/BcNodeContentService.cs" Line="28" Column="14" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="58" Column="14" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="53" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,6 +17,9 @@
                   <Node name="Models" expanded="True">
                     <Node name="BcNode" expanded="True" />
                   </Node>
+                  <Node name="Views" expanded="True">
+                    <Node name="BcNode" expanded="True" />
+                  </Node>
                 </Node>
               </Node>
               <Node name="Data" expanded="True" />
@@ -32,11 +29,8 @@
               </Node>
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
-                <Node name="ApiRequest" expanded="True" />
+                <Node name="BcNodeContent" expanded="True" />
                 <Node name="BcNodeRqst" expanded="True" />
-                <Node name="Content" expanded="True" />
-                <Node name="Location" expanded="True" />
-                <Node name="Token" expanded="True" />
               </Node>
               <Node name="Utility" expanded="True" />
             </Node>
@@ -48,5 +42,11 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
