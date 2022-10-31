@@ -63,10 +63,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQmNOb2RlL19DcmVhdGVFZGl0QmNOb2RlQ29udGVudFBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/subzero/Projects/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_CreateEditBcNodePartial (copy).cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQmNOb2RlL19DcmVhdGVFZGl0QmNOb2RlUGFydGlhbCAoY29weSkuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/subzero/Projects/BCNPortal/BCNPortal/Areas/Admin/Views/BcNode/_CreateEditBcNodePartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQmNOb2RlL19DcmVhdGVFZGl0QmNOb2RlUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

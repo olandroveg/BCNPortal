@@ -10,7 +10,7 @@
                         </h1>
                         <br />
 
-                        @{
+                        @*@{
 
                             for (int i = 0; i < 3; i++)
                             {
@@ -44,7 +44,7 @@
                             <input id="bcNodeIdId" name="bcNodeIdId" type="hidden" value=@Model.BcNodeId />
 
 
-                        }
+                        }*@
 
                     </div>
                     <div class="col-md-6">
@@ -57,7 +57,7 @@
                                 Add Content
                             </div>*@
                             <div class="btn btn-header btn-success">
-                                <a href="/Admin/Bcnode/AddBcNodeContent?bcNodeId=@Model.BcNodeId">Add Content</a>
+                                <a style="color:white" href="/Admin/Bcnode/AddBcNodeContent?bcNodeId=@Model.BcNodeId">ADD CONTENT</a>
                             </div>
                             
                             @*<button type="submit" class="btn btn-header btn-remove" style="float: right"

@@ -15,6 +15,7 @@ namespace BCNPortal.Services.BcNodeRqst
         private readonly string _getAllBcNodes;
         private readonly string _getSingleBcNode;
         private readonly string _sendBcNode;
+        private readonly string _deleteRange;
         private readonly ITokenRequestService _tokenRequestService;
 
         public BcNodeService(ITokenRequestService tokenRequestService)
@@ -24,6 +25,7 @@ namespace BCNPortal.Services.BcNodeRqst
             _getAllBcNodes = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getAllBcNodes"];
             _getSingleBcNode = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getSingleBcNode"];
             _sendBcNode = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_sendBcNode"];
+            _deleteRange = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRangeBcNode"];
             _tokenRequestService = tokenRequestService;
         }
 
@@ -132,6 +134,33 @@ namespace BCNPortal.Services.BcNodeRqst
                         {
                             var contentId = JsonConvert.DeserializeObject<Guid>(apiResponse);
                             return contentId;
+                        }
+
+                        throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));
+                    }
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        public async Task<bool> DeleteRange(TokenPlusId tokenPlusId, IEnumerable<Guid> bcnodeContentsIds)
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(bcnodeContentsIds), Encoding.UTF8, "application/json");
+                    httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
+                    using (var response = await httpClient.PostAsync(_udrfAddress + _deleteRange, content))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+                        {
+                            return true;
                         }
 
                         throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));

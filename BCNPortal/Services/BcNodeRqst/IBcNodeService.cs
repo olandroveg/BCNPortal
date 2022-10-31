@@ -10,5 +10,6 @@ namespace BCNPortal.Services.BcNodeRqst
         Task<List<BcNodeDto>> GetAllBcNodes(TokenPlusId tokenPlusId);
         Task<BcNodeDto> GetBcNode(TokenPlusId tokenPlusId, Guid bcNodeId);
         Task<Guid> SendContentDto(TokenPlusId tokenPlusId, BcNodeDto bcNodeDto);
+        Task<bool> DeleteRange(TokenPlusId tokenPlusId, IEnumerable<Guid> bcnodeContentsIds);
     }
 }

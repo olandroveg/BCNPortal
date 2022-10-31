@@ -377,5 +377,31 @@ namespace BCNPortal.Areas.Admin.Controllers
             var bcnodeId = Guid.Parse(model.BcNodeId);
             return View(nameof(Edit), await BuildBcNodeViewModel(bcnodeId));
         }
+        public async Task<IActionResult> DeleteRangeBcNodeContents(IEnumerable<Guid> bcnodeContentsIds)
+        {
+            var tokenPlusId = await GetToken();
+            try
+            {
+                await _bcNodeContentService.DeleteRangeBcNodeContents(tokenPlusId, bcnodeContentsIds);
+                return Json(new { action = "success", title = "Info", message = "Selected contents from this bcNode has been deleted" });
+            }
+            catch (ArgumentException)
+            {
+                return Json(new { action = "error", title = "Not completed", message = "Some contents from this bcNode could not be deleted, not found " });
+            }
+        }
+        public async Task<IActionResult> DeleteRange(IEnumerable<Guid> bcnodes)
+        {
+            var tokenPlusId = await GetToken();
+            try
+            {
+                await _bcNodeService.DeleteRange(tokenPlusId , bcnodes);
+                return Json(new { action = "success", title = "Info", message = "Selected bcNodes has been deleted" });
+            }
+            catch (ArgumentException)
+            {
+                return Json(new { action = "error", title = "Not completed", message = "Some bcNodes could not be deleted, not found " });
+            }
+        }
     }
 }
