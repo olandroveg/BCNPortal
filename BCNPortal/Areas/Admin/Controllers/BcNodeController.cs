@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
 using BCNPortal.Areas.Admin.Models.BcNode;
+using BCNPortal.Areas.Admin.Models.BcNodeContent;
+using BCNPortal.Dto.BcNodeContent;
 using BCNPortal.DTO;
 using BCNPortal.DTO.BcNode;
 using BCNPortal.DTO.Filter;
@@ -28,6 +30,7 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly IBcNodeService _bcNodeService;
         private readonly ILocationService _locationService;
         private readonly IBcNodeContentService _bcNodeContentService;
+        
 
 
 
@@ -38,7 +41,6 @@ namespace BCNPortal.Areas.Admin.Controllers
             IBcNodeService bcNodeService,
             ILocationService locationService,
             IBcNodeContentService bcNodeContentService)
-
 
             {
                 _tokenService = tokenService;
@@ -248,7 +250,7 @@ namespace BCNPortal.Areas.Admin.Controllers
                 filters.Page = startRec / pageSize;
                 filters.PageSize = pageSize;
                 filters.RefenceId = bcNodeId;
-                var data = _bcNodeContentService.GetBcNodeContents(filters));
+                var data = await _bcNodeContentService.GetBcNodeContentDto(tokenPlusId, filters);
                 var total = data.Count();
                 result = Json(new
                 {
@@ -263,6 +265,117 @@ namespace BCNPortal.Areas.Admin.Controllers
                 Console.Write(e);
             }
             return result;
+        }
+        [HttpGet]
+        public async Task <IActionResult> AddBcNodeContent(string bcNodeId)
+        {
+            ViewBag.Title = NewTitleContent;
+            return View(nameof(AddBcNodeContent),await BuildBcNodeAddContentViewModel(bcNodeId));
+        }
+
+        private async Task< AddBcNodeContentViewModel> BuildBcNodeAddContentViewModel(string bcNodeId)
+        {
+            var tokenPlusId = await GetToken();
+            return new AddBcNodeContentViewModel
+            {
+                Contents = await _bcNodeContentService.GetAllContents(tokenPlusId,bcNodeId),
+                
+                BcNodeId = bcNodeId
+            };
+
+        }
+        [HttpPost, ParameterBasedOnFormName("save-continue", "continueEditing")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddBcNodeContent(AddBcNodeContentViewModel model, bool continueEditing)
+        {
+            var tokenPlusId = await GetToken();
+            var bcnodeId = Guid.Parse(model.BcNodeId);
+            try
+            {
+                var bcNodeContentId = await _bcNodeContentService.SendBcNodeContentDto(tokenPlusId, model.ConvertToDto());
+                if (bcNodeContentId== Guid.Empty)
+                {
+                    TempData["SuccContentCreated"] = false;
+                    throw new Exception("BadRequest");
+                }
+                TempData["SuccContentCreated"] = true;
+
+            }
+            catch (Exception ex)
+            {
+                TempData["SuccContentCreated"] = false;
+                Console.Error.WriteLine(ex);
+                
+            }
+            return View(nameof(Edit),await BuildBcNodeViewModel(bcnodeId));
+        }
+
+        [HttpGet]
+        public async Task <IActionResult> EditBcNodeContent(Guid bcnodeContentId, int optionTab = 1)
+        {
+            if (bcnodeContentId.Equals(Guid.Empty))
+                return RedirectToAction(nameof(Index));
+            ViewBag.Title = EditTitleContent;
+            return View(nameof(EditBcNodeContent),await BuildBcNodeContentViewModel(bcnodeContentId, optionTab));
+        }
+
+        private async Task< BcNodeContentViewModel> BuildBcNodeContentViewModel(Guid bcNodeContentId, int optionTab = 1)
+        {
+            var tokenPlusId = await GetToken();
+            if (bcNodeContentId == Guid.Empty)
+                return new BcNodeContentViewModel
+                {
+
+                };
+            var bcNodeContentDto = new BcNodeContentDto();
+            try
+            {
+                bcNodeContentDto = await _bcNodeContentService.GetBcNodeContentDto(tokenPlusId, bcNodeContentId);
+                return new BcNodeContentViewModel
+                {
+                    Id = bcNodeContentDto.Id.ToString(),
+                    BcNodeId = bcNodeContentDto.BcNodeId.ToString(),
+                    ContentId = bcNodeContentDto.ContentId.ToString(),
+                    Service = bcNodeContentDto.Service,
+                    Bitrate = bcNodeContentDto.Bitrate.ToString(),
+                    SourceLocation = bcNodeContentDto.SourceLocation,
+                    Size = bcNodeContentDto.Size.ToString(),
+                    Name = bcNodeContentDto.Name
+
+                };
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex);
+                return new BcNodeContentViewModel
+                {
+
+                };
+            }
+            
+            
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditBcNodeContent(BcNodeContentViewModel model)
+        {
+            var tokenPlusId = await GetToken();
+            var bcnodeContentId = Guid.Empty;
+            try
+            {
+                bcnodeContentId = await _bcNodeContentService.SendBcNodeContentDto(tokenPlusId, model.ConvertToDto());
+                if (bcnodeContentId == Guid.Empty)
+                    throw new Exception("empty Id");
+                TempData["SuccContentUpdated"] = true;
+            }
+            catch(Exception ex)
+            {
+                TempData["SuccContentUpdated"] = false;
+                Console.Error.Write(ex.Message);
+            }
+            var bcnodeId = Guid.Parse(model.BcNodeId);
+            return View(nameof(Edit), await BuildBcNodeViewModel(bcnodeId));
         }
     }
 }

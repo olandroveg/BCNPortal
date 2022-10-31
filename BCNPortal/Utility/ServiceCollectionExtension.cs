@@ -15,11 +15,11 @@ namespace BCNPortal.Utility
             services.AddTransient<ITokenRequestService, TokenRequestService>();
             services.AddTransient<ITokenEntityService, TokenEntityService>();
             services.AddTransient<IBcnUserService, BcnUserService>();
+            services.AddTransient<IBcNodeContentService, BcNodeContentService>();
             services.AddTransient<IBcNodeService, BcNodeService>();
             services.AddTransient<ILocationService, LocationService>();
             services.AddTransient<IContentService, ContentService>();
-            services.AddTransient<IBcNodeContentService, IBcNodeContentService>();
-
+            
         }
     }
 }
