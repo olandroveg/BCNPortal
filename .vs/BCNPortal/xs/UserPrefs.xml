@@ -1,48 +1,31 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Utility/ParameterBasedOnFormNameAttribute.cs">
     <Files>
-      <File FileName="BCNPortal/Services/BcNodeContent/IBcNodeContentService.cs" Line="16" Column="99" />
-      <File FileName="BCNPortal/Services/BcNodeContent/BcNodeContentService.cs" Line="172" Column="14" />
-      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="102" Column="1" />
-      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="381" Column="2" />
-      <File FileName="BCNPortal/appsettings.json" Line="16" Column="65" />
-      <File FileName="BCNPortal/Areas/Admin/Controllers/ContentController.cs" Line="76" Column="45" />
+      <File FileName="BCNPortal/Services/BcNodeContent/IBcNodeContentService.cs" Line="21" Column="1" />
+      <File FileName="BCNPortal/Services/BcNodeContent/BcNodeContentService.cs" Line="32" Column="92" />
+      <File FileName="BCNPortal/Services/Content/ContentService.cs" Line="174" Column="10" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/IBcNodeService.cs" Line="13" Column="94" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="148" Column="14" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/BcNodeController.cs" Line="393" Column="80" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/ContentController.cs" Line="150" Column="42" />
+      <File FileName="BCNPortal/appsettings.json" Line="19" Column="36" />
       <File FileName="BCNPortal/Program.cs" Line="78" Column="1" />
+      <File FileName="BCNPortal/Areas/Admin/Views/BcNode/_CreateAddBcNodeContentPartial.cshtml" Line="1" Column="1" />
+      <File FileName="BCNPortal/Areas/Admin/Views/BcNode/_bcNodeContentIndex.cshtml" Line="79" Column="13" />
+      <File FileName="BCNPortal/Utility/ParameterBasedOnFormNameAttribute.cs" Line="16" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BCNPortal" expanded="True">
-            <Node name="BCNPortal" expanded="True">
-              <Node name="Areas" expanded="True">
-                <Node name="Admin" expanded="True">
-                  <Node name="Controllers" expanded="True" />
-                  <Node name="Models" expanded="True">
-                    <Node name="BcNode" expanded="True" />
-                  </Node>
-                  <Node name="Views" expanded="True">
-                    <Node name="BcNode" expanded="True" />
-                  </Node>
-                </Node>
-              </Node>
-              <Node name="Data" expanded="True" />
-              <Node name="DTO" expanded="True">
-                <Node name="BcNode" expanded="True" />
-                <Node name="BcNodeContent" expanded="True" />
-                <Node name="Location" expanded="True" />
-              </Node>
-              <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True">
-                <Node name="BcNodeContent" expanded="True" />
-                <Node name="BcNodeRqst" expanded="True" />
-              </Node>
-              <Node name="Utility" expanded="True" />
-            </Node>
+            <Node name="BCNPortal" expanded="True" />
           </Node>
         </State>
       </Pad>
@@ -51,6 +34,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
