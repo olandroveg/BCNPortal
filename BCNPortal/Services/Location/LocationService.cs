@@ -39,6 +39,7 @@ namespace BCNPortal.Services.Location
             
             try
             {
+                
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(baseFilter), Encoding.UTF8, "application/json");

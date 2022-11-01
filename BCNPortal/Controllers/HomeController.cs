@@ -2,6 +2,7 @@
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
+using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -30,6 +31,7 @@ namespace BCNPortal.Controllers
 
         public IActionResult Index()
         {
+
             
             return View();
         }
