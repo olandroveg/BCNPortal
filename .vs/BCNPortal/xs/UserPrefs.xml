@@ -1,14 +1,16 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Data/EntitiesConfiguration.cs">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Services/BcNodeRqst/BcNodeService.cs">
     <Files>
       <File FileName="BCNPortal/Utility/StaticConfigurationManager.cs" Line="19" Column="1" />
-      <File FileName="BCNPortal/Controllers/HomeController.cs" Line="32" Column="37" />
-      <File FileName="BCNPortal/appsettings.json" Line="14" Column="64" />
-      <File FileName="BCNPortal/Data/EntitiesConfiguration.cs" Line="24" Column="6" />
+      <File FileName="BCNPortal/Controllers/HomeController.cs" Line="18" Column="58" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="38" Column="58" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,6 +21,9 @@
               <Node name="Data" expanded="True" />
               <Node name="Migrations" expanded="True" />
               <Node name="Services" expanded="True">
+                <Node name="BcNodeRqst" expanded="True">
+                  <Node name="BcNodeService.cs" selected="True" />
+                </Node>
                 <Node name="Location" expanded="True" />
               </Node>
               <Node name="Utility" expanded="True" />
@@ -31,7 +36,4 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
