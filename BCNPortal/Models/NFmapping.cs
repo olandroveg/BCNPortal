@@ -7,6 +7,7 @@
         public string Version { get; set; }
         public bool Available { get; set; }
         public int Priority { get; set; }
+        public DateTime DateTime { get; set; }
         public ICollection<APImapping> Apis { get; set; }
 }
 }
