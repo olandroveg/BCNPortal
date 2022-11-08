@@ -2,16 +2,15 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/appsettings.json">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Data/EntitiesConfiguration.cs">
     <Files>
       <File FileName="BCNPortal/Utility/StaticConfigurationManager.cs" Line="19" Column="1" />
       <File FileName="BCNPortal/Controllers/HomeController.cs" Line="18" Column="58" />
       <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="38" Column="58" />
-      <File FileName="BCNPortal/appsettings.json" Line="23" Column="61" />
+      <File FileName="BCNPortal/appsettings.json" Line="19" Column="63" />
       <File FileName="BCNPortal/Models/NFmapping.cs" Line="14" Column="1" />
-      <File FileName="BCNPortal/Migrations/20221107202056_AddTbleNFFieldDateTime.cs" Line="28" Column="1" />
+      <File FileName="BCNPortal/Models/IdinNRF.cs" Line="10" Column="1" />
+      <File FileName="BCNPortal/Data/EntitiesConfiguration.cs" Line="52" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -36,6 +35,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

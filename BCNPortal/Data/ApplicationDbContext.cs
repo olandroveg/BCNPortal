@@ -25,6 +25,7 @@ namespace BCNPortal.Data
         public virtual DbSet<Token> Token { get; set; }
         public virtual DbSet<APImapping> APImapping { get; set; }
         public virtual DbSet<NFmapping> NFmapping { get; set; }
+        public virtual DbSet<IDinNRF> IDinNRF { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -32,6 +33,8 @@ namespace BCNPortal.Data
             builder.ApplyConfiguration(new TokenConfiguration());
             builder.ApplyConfiguration(new APImappingConfiguration());
             builder.ApplyConfiguration(new NFmappingConfiguration());
+            builder.ApplyConfiguration(new IDinNRFConfiguration());
+
         }
         public DatabaseFacade GetDatabase()
         {

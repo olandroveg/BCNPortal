@@ -10,6 +10,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("aspnet-BCNPortal-74046A05-B1B3-41F1-9D7F-3DBA8FA6E3CC")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("BCNPortal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
