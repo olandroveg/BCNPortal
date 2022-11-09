@@ -2,6 +2,7 @@
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
+using BCNPortal.Services.RegisterService;
 using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,47 +17,48 @@ namespace BCNPortal.Controllers
         private readonly ITokenRequestService _tokenService;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IBcnUserService _bcnUserService;
-
+        private readonly IRegisterService _registerService;
         public HomeController(ILogger<HomeController> logger,
             ITokenRequestService tokenService,
             UserManager<IdentityUser> userManager,
-            IBcnUserService bcnUserService
+            IBcnUserService bcnUserService, IRegisterService registerService
             )
         {
             _logger = logger;
             _tokenService = tokenService;
             _userManager = userManager;
             _bcnUserService = bcnUserService;
+            _registerService = registerService;
         }
 
-        public IActionResult Index()
+        public async Task< IActionResult> Index()
         {
-
-            
+            //var tokenPlusId = await GetToken();
+            //var portalId = await _registerService.RegisterPortal(tokenPlusId);
             return View();
         }
 
-        //private async Task<string> GetToken()
-        //{
-        //    // get username of the logged user
-        //    var userId = Guid.Empty;
-        //    var bcnPassword = "";
-        //    var bcnUsername = "";
-        //    string token = "";
-        //    var loggedUser = await _userManager.GetUserAsync(HttpContext.User);
-        //    if (loggedUser != null)
-        //    {
-        //        userId = Guid.Parse(await _userManager.GetUserIdAsync(loggedUser));
-        //        var bcnUser2 = _bcnUserService.GetBcnUserAccountByUserPortalId(userId);
-        //        bcnPassword = bcnUser2.BcnPassword;
-        //        bcnUsername = bcnUser2.BcnUsername;
+        private async Task<TokenPlusId> GetToken()
+        {
+            // get username of the logged user
+            var bcnPassword = "";
+            var bcnUsername = "";
+            var userId = Guid.Empty;
+            var token = new TokenPlusId();
+            var loggedUser = await _userManager.GetUserAsync(HttpContext.User);
+            if (loggedUser != null)
+            {
+                userId = Guid.Parse(await _userManager.GetUserIdAsync(loggedUser));
+                var bcnUser2 = _bcnUserService.GetBcnUserAccountByUserPortalId(userId);
+                bcnPassword = bcnUser2.BcnPassword;
+                bcnUsername = bcnUser2.BcnUsername;
 
-        //    }
-        //    if (bcnUsername != "" && bcnPassword != "")
-        //        token = await _tokenService.ManageToken(bcnUsername, bcnPassword, userId);
-        //    return token;
-        //}
-        
+            }
+            if (bcnUsername != "" && bcnPassword != "")
+                token = await _tokenService.ManageToken(bcnUsername, bcnPassword, userId);
+            return token;
+        }
+
         public IActionResult Privacy()
         {
             return View();

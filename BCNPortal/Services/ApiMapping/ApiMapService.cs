@@ -1,4 +1,5 @@
-﻿using BCNPortal.Services.ApiRequest;
+﻿using BCNPortal.Data;
+using BCNPortal.Services.ApiRequest;
 
 namespace BCNPortal.Services.ApiMapping
 {
@@ -29,6 +30,14 @@ namespace BCNPortal.Services.ApiMapping
         private readonly string _UDRF_sendContent;
         private readonly string _UDRF_deleteRangeContents;
 
+        private readonly ApplicationDbContext _context;
         private readonly ITokenRequestService _tokenRequestService;
+
+        public ApiMapService (ApplicationDbContext context, ITokenRequestService tokenRequestService)
+        {
+            _context = context;
+            _tokenRequestService = tokenRequestService;
+        }
+
     }
 }

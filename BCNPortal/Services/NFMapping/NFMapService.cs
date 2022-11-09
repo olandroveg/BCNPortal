@@ -1,6 +1,6 @@
 ﻿namespace BCNPortal.Services.NFMapping
 {
-    public class NFMapService
+    public class NFMapService : INFMapService
     {
     }
 }
