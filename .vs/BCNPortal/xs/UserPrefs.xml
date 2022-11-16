@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Models/NFmapping.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Data/EntitiesConfiguration.cs">
     <Files>
       <File FileName="BCNPortal/Utility/StaticConfigurationManager.cs" Line="19" Column="1" />
       <File FileName="BCNPortal/Controllers/HomeController.cs" Line="18" Column="58" />
@@ -9,23 +10,29 @@
       <File FileName="BCNPortal/appsettings.json" Line="19" Column="52" />
       <File FileName="BCNPortal/Models/NFmapping.cs" Line="14" Column="1" />
       <File FileName="BCNPortal/Models/IdinNRF.cs" Line="10" Column="1" />
-      <File FileName="BCNPortal/Data/EntitiesConfiguration.cs" Line="49" Column="39" />
+      <File FileName="BCNPortal/Data/EntitiesConfiguration.cs" Line="51" Column="10" />
       <File FileName="BCNPortal/Data/ApplicationDbContext.cs" Line="16" Column="36" />
       <File FileName="BCNPortal/Migrations/20221108213557_AddIDNRFTble.cs" Line="1" Column="1" />
       <File FileName="BCNPortal/Services/IdNRF/IdNRFService.cs" Line="28" Column="52" />
       <File FileName="BCNPortal/Services/IdNRF/IIdNRFService.cs" Line="10" Column="6" />
       <File FileName="BCNPortal/Services/NFMapping/NFMapService.cs" Line="1" Column="1" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/BackendController.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="BCNPortal" expanded="True">
             <Node name="BCNPortal" expanded="True">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="Models" expanded="True">
-                <Node name="NFmapping.cs" selected="True" />
+              <Node name="Areas" expanded="True">
+                <Node name="Admin" expanded="True">
+                  <Node name="Controllers" expanded="True" />
+                </Node>
               </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True">
+                <Node name="EntitiesConfiguration.cs" selected="True" />
+              </Node>
+              <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
                 <Node name="NFMapping" expanded="True" />
               </Node>
@@ -38,9 +45,8 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>
