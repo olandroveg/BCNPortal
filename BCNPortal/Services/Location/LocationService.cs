@@ -3,6 +3,7 @@ using BCNPortal.DTO.Filter;
 using BCNPortal.DTO.Location;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.NFMapping;
 using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
@@ -20,9 +21,10 @@ namespace BCNPortal.Services.Location
         private readonly string _getSingleLocation;
         private readonly string _sendLocation;
         private readonly string _deleteRange;
+        private readonly string _udrfName;
+        private readonly INFMapService _nfMapService;
         
-        private readonly ITokenRequestService _tokenRequestService;
-        public LocationService(ITokenRequestService tokenRequestService)
+        public LocationService(INFMapService nFMapService)
         {
             _udrfAddress = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_Address"];
             _getAllLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getAllLocations"];
@@ -30,21 +32,22 @@ namespace BCNPortal.Services.Location
             _getSingleLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getSingleLocation"];
             _sendLocation = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_sendLocation"];
             _deleteRange = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRangeLocations"];
-            
+            _udrfName = StaticConfigurationManager.AppSetting["NRFdiscoveryNF:UDRF"];
+            _nfMapService = nFMapService;
 
-            _tokenRequestService = tokenRequestService;
+
         }
         public async Task<List<LocationDto>> GetLocations(TokenPlusId tokenPlusId, BaseFilter baseFilter)
         {
             
             try
             {
-                
+                var api = _nfMapService.GetEndPoint(_udrfName, _getLocation);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(baseFilter), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _getLocation, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -66,14 +69,15 @@ namespace BCNPortal.Services.Location
         }
         public async Task<List<LocationListDto>> GetAllLocations(TokenPlusId tokenPlusId)
         {
-            //var locationDto = new List<LocationDto>();
+            
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getAllLocation);
                 using (var httpClient = new HttpClient())
                 {
                     //StringContent content = new StringContent(JsonConvert.SerializeObject(baseFilter), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.GetAsync(_udrfAddress + _getAllLocation))
+                    using (var response = await httpClient.GetAsync(api))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -95,14 +99,15 @@ namespace BCNPortal.Services.Location
         }
         public async Task<LocationDto> GetSingleLocation(TokenPlusId tokenPlusId, Guid locationId)
         {
-            //var locationDto = new List<LocationDto>();
+            
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getSingleLocation);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(locationId), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _getSingleLocation, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -126,11 +131,12 @@ namespace BCNPortal.Services.Location
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _sendLocation);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(locationDto), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _sendLocation, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -154,11 +160,12 @@ namespace BCNPortal.Services.Location
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _deleteRange);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(locationIds), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _deleteRange, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)

@@ -41,14 +41,15 @@ namespace BCNPortal.Services.Discovery
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
                             var apis = JsonConvert.DeserializeObject<List<ServicesAnswerDto>>(apiResponse);
+                            var id = Guid.Empty;
                             if (apis != null && apis.Count() > 0)
-                                ProcessNFMapp(apis, targetNFName);
+                              id = await  ProcessNFMapp(apis, targetNFName);
                             else
                                 throw new Exception("no apis found");
                             
                         }
-
-                        throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));
+                        else
+                            throw new Exception(HttpResponseCode.GetMessageFromStatus(response.StatusCode));
                     }
 
                 }
@@ -59,7 +60,7 @@ namespace BCNPortal.Services.Discovery
             }
 
         }
-        private void ProcessNFMapp (List<ServicesAnswerDto> apis, string name)
+        private async Task <Guid> ProcessNFMapp (List<ServicesAnswerDto> apis, string name)
         {
             var singleApi = apis.FirstOrDefault();
             var nfMapp = new NFmapping
@@ -68,7 +69,7 @@ namespace BCNPortal.Services.Discovery
                 NFId = singleApi.NFId,
                 NF = name,
                 NFbaseAdd = singleApi.TargetNFAdd,
-                Version = "",
+                Version = "1.0",
                 Available = true,
                 Priority = 1,
                 DateTime = DateTime.Now,
@@ -79,7 +80,7 @@ namespace BCNPortal.Services.Discovery
                     ServiceName = x.Description
                 }).ToList()
             };
-            var id = _iNFMapService.AddOrUpdate(nfMapp);
+            return await _iNFMapService.AddOrUpdate(nfMapp);
         }
     }
 }

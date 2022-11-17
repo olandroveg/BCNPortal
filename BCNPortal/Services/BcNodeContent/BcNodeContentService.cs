@@ -6,6 +6,7 @@ using BCNPortal.DTO;
 using BCNPortal.DTO.Filter;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.NFMapping;
 using BCNPortal.Utility;
 using Newtonsoft.Json;
 
@@ -20,9 +21,12 @@ namespace BCNPortal.Services.BcNodeContent
         private readonly string _getServicesDto;
         private readonly string _getBcNodeContentDto;
         private readonly string _deleteRangeBcNodeContents;
+        private readonly string _udrfName;
+        private readonly INFMapService _nfMapService;
 
-        public BcNodeContentService()
+        public BcNodeContentService(INFMapService nFMapService)
         {
+            _udrfName = StaticConfigurationManager.AppSetting["NRFdiscoveryNF:UDRF"];
             _udrfAddress = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_Address"];
             _getBcNodeContents = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getBcNodeContents"];
             _getContents = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getContents"];
@@ -30,6 +34,7 @@ namespace BCNPortal.Services.BcNodeContent
             _getServicesDto = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getServicesDto"];
             _getBcNodeContentDto = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getBcNodeContentDto"];
             _deleteRangeBcNodeContents = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRangeBcNodeContents"];
+            _nfMapService = nFMapService;
 
         }
 
@@ -37,11 +42,12 @@ namespace BCNPortal.Services.BcNodeContent
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getBcNodeContents);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(baseFilter), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _getBcNodeContents, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -65,11 +71,12 @@ namespace BCNPortal.Services.BcNodeContent
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getContents);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(bcNodeId), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _getContents, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -93,11 +100,12 @@ namespace BCNPortal.Services.BcNodeContent
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _sendBcNodeContents);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(bcNodeContentDto), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _sendBcNodeContents, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -122,11 +130,12 @@ namespace BCNPortal.Services.BcNodeContent
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getServicesDto);
                 using (var httpClient = new HttpClient())
                 {
                     //StringContent content = new StringContent(JsonConvert.SerializeObject(bcNodeId), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.GetAsync(_udrfAddress + _getServicesDto))
+                    using (var response = await httpClient.GetAsync(api))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -150,11 +159,12 @@ namespace BCNPortal.Services.BcNodeContent
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getBcNodeContentDto);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(bcNodeContentId), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _getBcNodeContentDto, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -178,11 +188,12 @@ namespace BCNPortal.Services.BcNodeContent
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _deleteRangeBcNodeContents);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(bcnodeContentsIds), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _deleteRangeBcNodeContents, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)

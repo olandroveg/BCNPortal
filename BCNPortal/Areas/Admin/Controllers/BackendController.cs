@@ -3,6 +3,7 @@ using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
 using BCNPortal.Services.Discovery;
 using BCNPortal.Services.IdNRF;
+using BCNPortal.Services.NFMapping;
 using BCNPortal.Services.RegisterService;
 using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
@@ -21,11 +22,13 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly IRegisterService _registerService;
         private readonly IIdNRFService _idNRFService;
         private readonly IDiscoveryService _discoveryService;
-        public BackendController(
+        private readonly INFMapService _iNFMapService;
+       public BackendController(
             ITokenRequestService tokenService,
             UserManager<IdentityUser> userManager,
             IBcnUserService bcnUserService, IRegisterService registerService,
-            IIdNRFService idNRFService, IDiscoveryService discoveryService
+            IIdNRFService idNRFService, IDiscoveryService discoveryService,
+            INFMapService iNFMapService
             )
         {
             
@@ -35,6 +38,7 @@ namespace BCNPortal.Areas.Admin.Controllers
             _registerService = registerService;
             _idNRFService = idNRFService;
             _discoveryService = discoveryService;
+            _iNFMapService = iNFMapService;
         }
         private async Task<TokenPlusId> GetToken()
         {
@@ -64,7 +68,9 @@ namespace BCNPortal.Areas.Admin.Controllers
             var portalId = await _registerService.RegisterPortal(tokenPlusId);
             await _idNRFService.AddOrUpdate(new IDinNRF { Id = portalId });
             var targetNfName = StaticConfigurationManager.AppSetting["NRFdiscoveryNF:UDRF"];
-            await _discoveryService.DiscoverAllApiOfNF(tokenPlusId, targetNfName, Guid.Empty);
+            //check if already there is a type of this NF in the NFMapp table
+            var targetNfId = _iNFMapService.GetNFMapIdByName(targetNfName);
+            await _discoveryService.DiscoverAllApiOfNF(tokenPlusId, targetNfName, targetNfId != Guid.Empty ? targetNfId : Guid.Empty);
             return View(nameof(Index));
         }
     }

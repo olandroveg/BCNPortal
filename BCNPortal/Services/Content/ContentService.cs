@@ -2,6 +2,7 @@
 using BCNPortal.Dto.Service;
 using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
+using BCNPortal.Services.NFMapping;
 using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
@@ -11,17 +12,16 @@ namespace BCNPortal.Services.Content
 {
     public class ContentService : IContentService
     {
-
-        
-        private readonly ITokenRequestService _tokenRequestService;
         private readonly string _udrfAddress;
         private readonly string _getAllContents;
         private readonly string _getAllServices;
         private readonly string _getSingleContent;
         private readonly string _sendContent;
         private readonly string _deleteRange;
+        private readonly string _udrfName;
+        private readonly INFMapService _nfMapService;
 
-        public ContentService(ITokenRequestService tokenRequestService)
+        public ContentService(INFMapService nFMapService)
         {
             _udrfAddress = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_Address"];
             _getAllContents = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getAllContents"];
@@ -29,18 +29,20 @@ namespace BCNPortal.Services.Content
             _getSingleContent = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_getSingleContent"];
             _sendContent = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_sendContent"];
             _deleteRange = StaticConfigurationManager.AppSetting["ApiAddress:UDRF_deleteRangeContents"];
-            _tokenRequestService = tokenRequestService;
-            
+            _udrfName = StaticConfigurationManager.AppSetting["NRFdiscoveryNF:UDRF"];
+            _nfMapService = nFMapService;
+
         }
         public async Task<List<ContentTableDto>> GetAllContents(TokenPlusId tokenPlusId)
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getAllContents);
                 using (var httpClient = new HttpClient())
                 {
                     //StringContent content = new StringContent(JsonConvert.SerializeObject(baseFilter), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.GetAsync(_udrfAddress + _getAllContents))
+                    using (var response = await httpClient.GetAsync(api))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -64,11 +66,12 @@ namespace BCNPortal.Services.Content
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getAllServices);
                 using (var httpClient = new HttpClient())
                 {
                     //StringContent content = new StringContent(JsonConvert.SerializeObject(baseFilter), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.GetAsync(_udrfAddress + _getAllServices))
+                    using (var response = await httpClient.GetAsync(api))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -93,11 +96,12 @@ namespace BCNPortal.Services.Content
             
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _getSingleContent);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(contentId), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _getSingleContent, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -121,11 +125,12 @@ namespace BCNPortal.Services.Content
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _sendContent);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(contentDto), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _sendContent, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
@@ -149,11 +154,12 @@ namespace BCNPortal.Services.Content
         {
             try
             {
+                var api = _nfMapService.GetEndPoint(_udrfName, _deleteRange);
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(contentIds), Encoding.UTF8, "application/json");
                     httpClient.DefaultRequestHeaders.Add("Authorization", "Bearer " + tokenPlusId.Token);
-                    using (var response = await httpClient.PostAsync(_udrfAddress + _deleteRange, content))
+                    using (var response = await httpClient.PostAsync(api, content))
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)

@@ -1,26 +1,16 @@
 ﻿<Properties StartupConfiguration="{E2B63C7A-CF3F-4C0A-A372-4BE2E72B156C}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/Discovery/DiscoveryService.cs" relfile="BCNPortal/Services/Discovery/DiscoveryService.cs" line="44" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/Discovery/DiscoveryService.cs" relfile="BCNPortal/Services/Discovery/DiscoveryService.cs" line="64" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/Discovery/DiscoveryService.cs" relfile="BCNPortal/Services/Discovery/DiscoveryService.cs" line="80" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Areas/Admin/Controllers/BackendController.cs" relfile="BCNPortal/Areas/Admin/Controllers/BackendController.cs" line="68" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/ApiMapping/ApiMapService.cs" relfile="BCNPortal/Services/ApiMapping/ApiMapService.cs" line="53" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/ApiMapping/ApiMapService.cs" relfile="BCNPortal/Services/ApiMapping/ApiMapService.cs" line="47" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/ApiMapping/ApiMapService.cs" relfile="BCNPortal/Services/ApiMapping/ApiMapService.cs" line="46" column="1" />
-      <Breakpoint file="/Users/subzero/Projects/BCNPortal/BCNPortal/Services/ApiMapping/ApiMapService.cs" relfile="BCNPortal/Services/ApiMapping/ApiMapService.cs" line="48" column="1" />
-    </BreakpointStore>
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="BCNPortal/Services/Content/ContentService.cs">
     <Files>
-      <File FileName="BCNPortal/Areas/Admin/Controllers/BackendController.cs" />
-      <File FileName="BCNPortal/Services/Discovery/DiscoveryService.cs" />
-      <File FileName="BCNPortal/Services/NFMapping/NFMapService.cs" />
-      <File FileName="BCNPortal/Services/ApiMapping/ApiMapService.cs" Line="28" Column="60" />
-      <File FileName="BCNPortal/Program.cs" Line="79" Column="1" />
+      <File FileName="BCNPortal/Services/BcNodeRqst/BcNodeService.cs" Line="42" Column="1" />
+      <File FileName="BCNPortal/appsettings.json" Line="40" Column="44" />
+      <File FileName="BCNPortal/Services/NFMapping/NFMapService.cs" Line="84" Column="70" />
+      <File FileName="BCNPortal/Services/BcNodeContent/BcNodeContentService.cs" Line="45" Column="84" />
+      <File FileName="BCNPortal/Services/Content/ContentService.cs" Line="73" Column="1" />
+      <File FileName="BCNPortal/Services/Location/LocationService.cs" Line="160" Column="10" />
+      <File FileName="BCNPortal/Services/ServicesService/ServicesService.cs" Line="7" Column="1" />
+      <File FileName="BCNPortal/Services/ServicesService/IServicesService.cs" Line="1" Column="1" />
+      <File FileName="BCNPortal/Areas/Admin/Controllers/ContentController.cs" Line="98" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -40,10 +30,15 @@
               <Node name="Migrations" expanded="True" />
               <Node name="Models" expanded="True" />
               <Node name="Services" expanded="True">
-                <Node name="ApiMapping" expanded="True" />
+                <Node name="BcNodeContent" expanded="True" />
+                <Node name="BcNodeRqst" expanded="True" />
+                <Node name="BcnUser" expanded="True" />
+                <Node name="Content" expanded="True">
+                  <Node name="ContentService.cs" selected="True" />
+                </Node>
                 <Node name="Discovery" expanded="True" />
-                <Node name="NFMapping" expanded="True" />
-                <Node name="RegisterService" expanded="True" />
+                <Node name="Location" expanded="True" />
+                <Node name="ServicesService" expanded="True" />
               </Node>
               <Node name="Utility" expanded="True" />
             </Node>
@@ -52,5 +47,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.BCNPortal PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
 </Properties>
