@@ -61,11 +61,13 @@ namespace BCNPortal.Services.Discovery
         }
         private void ProcessNFMapp (List<ServicesAnswerDto> apis, string name)
         {
+            var singleApi = apis.FirstOrDefault();
             var nfMapp = new NFmapping
             {
                 Id = Guid.Empty,
-                NFId = apis.FirstOrDefault().NFId,
+                NFId = singleApi.NFId,
                 NF = name,
+                NFbaseAdd = singleApi.TargetNFAdd,
                 Version = "",
                 Available = true,
                 Priority = 1,
