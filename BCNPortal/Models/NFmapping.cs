@@ -3,6 +3,7 @@
     public class NFmapping
     {
         public Guid Id { get; set; }
+        public Guid NFId { get; set; }
         public string NF { get; set; }
         public string Version { get; set; }
         public bool Available { get; set; }
