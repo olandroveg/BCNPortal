@@ -1,8 +1,10 @@
 ﻿using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
 using BCNPortal.Services.BcnUser;
+using BCNPortal.Services.Discovery;
 using BCNPortal.Services.IdNRF;
 using BCNPortal.Services.RegisterService;
+using BCNPortal.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +20,12 @@ namespace BCNPortal.Areas.Admin.Controllers
         private readonly IBcnUserService _bcnUserService;
         private readonly IRegisterService _registerService;
         private readonly IIdNRFService _idNRFService;
+        private readonly IDiscoveryService _discoveryService;
         public BackendController(
             ITokenRequestService tokenService,
             UserManager<IdentityUser> userManager,
             IBcnUserService bcnUserService, IRegisterService registerService,
-            IIdNRFService idNRFService
+            IIdNRFService idNRFService, IDiscoveryService discoveryService
             )
         {
             
@@ -31,6 +34,7 @@ namespace BCNPortal.Areas.Admin.Controllers
             _bcnUserService = bcnUserService;
             _registerService = registerService;
             _idNRFService = idNRFService;
+            _discoveryService = discoveryService;
         }
         private async Task<TokenPlusId> GetToken()
         {
@@ -59,6 +63,8 @@ namespace BCNPortal.Areas.Admin.Controllers
             var tokenPlusId = await GetToken();
             var portalId = await _registerService.RegisterPortal(tokenPlusId);
             await _idNRFService.AddOrUpdate(new IDinNRF { Id = portalId });
+            var targetNfName = StaticConfigurationManager.AppSetting["NRFdiscoveryNF:UDRF"];
+            await _discoveryService.DiscoverAllApiOfNF(tokenPlusId, )
             return View(nameof(Index));
         }
     }

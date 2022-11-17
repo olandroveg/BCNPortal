@@ -4,6 +4,7 @@ using BCNPortal.Services.BcNodeContent;
 using BCNPortal.Services.BcNodeRqst;
 using BCNPortal.Services.BcnUser;
 using BCNPortal.Services.Content;
+using BCNPortal.Services.Discovery;
 using BCNPortal.Services.IdNRF;
 using BCNPortal.Services.Location;
 using BCNPortal.Services.NFMapping;
@@ -27,6 +28,7 @@ namespace BCNPortal.Utility
             services.AddTransient<INFMapService, NFMapService>();
             services.AddTransient<IRegisterService, RegisterService>();
             services.AddTransient<IApiMapService, ApiMapService>();
+            services.AddTransient<IDiscoveryService, DiscoveryService>();
         }
     }
 }

@@ -24,11 +24,13 @@
     <None Remove="Areas\Admin\" />
     <None Remove="Services\BcNodeContent\" />
     <None Remove="Services\IdNRF\" />
+    <None Remove="Services\Discovery\" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Data\" />
     <Folder Include="Services\BcNodeContent\" />
     <Folder Include="Services\IdNRF\" />
+    <Folder Include="Services\Discovery\" />
   </ItemGroup>
 </Project>
