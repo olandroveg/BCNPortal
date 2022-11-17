@@ -3,11 +3,11 @@ namespace BCNPortal.DTO.Portal
 {
     public class DiscoverRqstDto
     {
-        private Guid SourceNFId { get; set; }
-        private Guid PortalId { get; set; }
-        private Guid TargetNFId { get; set; }
-        private string NFName { get; set; }
-        private bool isPortal { get; set; }
+        public Guid SourceNFId { get; set; }
+        public Guid PortalId { get; set; }
+        public Guid TargetNFId { get; set; }
+        public string NFName { get; set; }
+        public bool isPortal { get; set; }
 
         public DiscoverRqstDto(Guid portalId, string nfName, Guid targetNFId)
         {

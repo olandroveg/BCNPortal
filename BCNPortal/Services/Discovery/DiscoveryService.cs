@@ -29,6 +29,8 @@ namespace BCNPortal.Services.Discovery
             {
                 var portalId = _idNRFService.GetNF_IDinNRF().Id ?? Guid.Empty;
                 var portalDisc = new DiscoverRqstDto(portalId, targetNFName, targetNFId);
+                
+                
                 using (var httpClient = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(portalDisc), Encoding.UTF8, "application/json");
@@ -38,8 +40,11 @@ namespace BCNPortal.Services.Discovery
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         if (response.StatusCode == System.Net.HttpStatusCode.OK)
                         {
-                            var apis = JsonConvert.DeserializeObject<ServicesAnswerDto>(apiResponse);
-                            var test = 1;
+                            var apis = JsonConvert.DeserializeObject<List<ServicesAnswerDto>>(apiResponse);
+                            if (apis != null && apis.Count() > 0)
+                                ProcessNFMapp(apis, targetNFName);
+                            else
+                                throw new Exception("no apis found");
                             
                         }
 
@@ -53,6 +58,26 @@ namespace BCNPortal.Services.Discovery
                 throw new Exception(e.Message);
             }
 
+        }
+        private void ProcessNFMapp (List<ServicesAnswerDto> apis, string name)
+        {
+            var nfMapp = new NFmapping
+            {
+                Id = Guid.Empty,
+                NFId = apis.FirstOrDefault().NFId,
+                NF = name,
+                Version = "",
+                Available = true,
+                Priority = 1,
+                DateTime = DateTime.Now,
+                Apis = apis.Select(x => new APImapping
+                {
+                    Id = Guid.Empty,
+                    ServiceApi = x.ServicesAPI,
+                    ServiceName = x.Description
+                }).ToList()
+            };
+            var id = _iNFMapService.AddOrUpdate(nfMapp);
         }
     }
 }

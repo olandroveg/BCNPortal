@@ -64,7 +64,7 @@ namespace BCNPortal.Areas.Admin.Controllers
             var portalId = await _registerService.RegisterPortal(tokenPlusId);
             await _idNRFService.AddOrUpdate(new IDinNRF { Id = portalId });
             var targetNfName = StaticConfigurationManager.AppSetting["NRFdiscoveryNF:UDRF"];
-            await _discoveryService.DiscoverAllApiOfNF(tokenPlusId, )
+            await _discoveryService.DiscoverAllApiOfNF(tokenPlusId, targetNfName, Guid.Empty);
             return View(nameof(Index));
         }
     }

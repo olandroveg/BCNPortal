@@ -1,6 +1,10 @@
-﻿namespace BCNPortal.Services.NFMapping
+﻿using BCNPortal.Models;
+
+namespace BCNPortal.Services.NFMapping
 {
-    public class INFMapService
+    public interface INFMapService
     {
+        public void DeleteByName(NFmapping nFmapping);
+        public Task<Guid> AddOrUpdate(NFmapping nFMapping);
     }
 }

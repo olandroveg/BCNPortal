@@ -1,5 +1,7 @@
 ﻿using BCNPortal.Data;
+using BCNPortal.Models;
 using BCNPortal.Services.ApiRequest;
+using BCNPortal.Utility;
 
 namespace BCNPortal.Services.ApiMapping
 {
@@ -7,7 +9,7 @@ namespace BCNPortal.Services.ApiMapping
     {
         //private readonly string _NRF_Address;
         // below api are compared to NRF Api answer for UDRF
-        private readonly string _UDRF_Address;
+        private readonly string _UDRF_Address = StaticConfigurationManager.AppSetting["ApiAddress:NRF_Address"];
         private readonly string _UDRF_getBcNodes;
         private readonly string _UDRF_sendBcNode;
         private readonly string _UDRF_getAllBcNodes;
@@ -31,12 +33,25 @@ namespace BCNPortal.Services.ApiMapping
         private readonly string _UDRF_deleteRangeContents;
 
         private readonly ApplicationDbContext _context;
-        private readonly ITokenRequestService _tokenRequestService;
 
-        public ApiMapService (ApplicationDbContext context, ITokenRequestService tokenRequestService)
+        public ApiMapService (ApplicationDbContext context)
         {
             _context = context;
-            _tokenRequestService = tokenRequestService;
+            
+        }
+        public void DeleteRange (IEnumerable<APImapping> apiMappings)
+        {
+            try
+            {
+                if (!_context.APImapping.All(x => x != null))
+                    throw new ArgumentException(nameof(apiMappings));
+                _context.APImapping.RemoveRange(apiMappings);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
     }
