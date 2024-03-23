@@ -4,3 +4,5 @@ The data will be stored and retrieved from the UDR (User Data Repository Functio
 BCN Portal is configured to use MySql DB.
 
 Developer: Orlando Landrove
+
+ASP.NetCore C# project
